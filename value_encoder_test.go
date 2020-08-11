@@ -5,44 +5,50 @@ import (
 	"testing"
 )
 
-type MockValueEncoder struct {
-}
+type MockValueEncoderUnit struct{}
 
-func (m *MockValueEncoder) Encode(dataType ValueEncoderType, data interface{}) ([]byte, error) {
+func (m *MockValueEncoderUnit) Encode(data interface{}) ([]byte, error) {
 	return []byte{byte(data.(int))}, nil
 }
 
-func (m *MockValueEncoder) Decode(data []byte) (interface{}, error) {
-	return int(data[0]), nil
+func (m *MockValueEncoderUnit) Decode(data []byte) (interface{}, error) {
+	return byte(data[0]), nil
 }
 
-func TestMessageCodecBehaviour(t *testing.T) {
+func TestValueEncoderBehaviour(t *testing.T) {
 
 	testData := []struct {
 		Name     string
+		DataType ValueEncoderType
 		Value    interface{}
 		HasError bool
 	}{
 		{
 			"Accepted",
+			9999,
 			1,
 			false,
 		},
+		{
+			"Fail Case",
+			0,
+			10000,
+			true,
+		},
 	}
 
-	codec := NewSimpleMessageCodec()
-	codec.valueEncoder = &MockValueEncoder{}
-
+	encoder := NewSimpleValueEncoder()
+	encoder.encoders[9999] = &MockValueEncoderUnit{}
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := codec.Encode(val.Value)
+			encoded, err := encoder.Encode(val.DataType, val.Value)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
 			if reflect.DeepEqual(encoded, val.Value) {
 				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)
 			}
-			decoded, err := codec.Decode(encoded)
+			decoded, err := encoder.Decode(encoded)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
@@ -51,4 +57,5 @@ func TestMessageCodecBehaviour(t *testing.T) {
 			}
 		})
 	}
+
 }
