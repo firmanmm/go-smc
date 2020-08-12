@@ -1,7 +1,7 @@
 # Go Simple Message Codec
 
 ### Preface
-This is a simple message codex based on `rewritten` version that is used on my `sync-mq` library. I decided to share it with you guys since i think it's ready to be used by the public. Feel free to improve this repository.
+This is a simple message codec based on `rewritten` version that is used on my `sync-mq` library. I decided to share it with you guys since i think it's ready to be used by the public. Feel free to improve this repository.
 
 # About
 Well this is a message codec. It's mainly used to pack and unpack together a bunch of data structure into an array of byte to be transported via network. You can think of it like json marshal and unmarshal but friendlier to machine instead of human. This is a work in progress version that may change in the future. However, if you want to use it right now, i suggest you to fork this project so there is no breaking change in the future. (PS: I do it often as i see fit, so I highly recommend that). 
@@ -34,4 +34,4 @@ BenchmarkListOfMapJsoniter-8           	    2862	    421894 ns/op	   82531 B/op	
 BenchmarkListOfMapSMC-8                	    6684	    164004 ns/op	  549402 B/op	    1015 allocs/op
 ```
 
-As you can see. This Simple Message Codex provides higher throughput compared to `jsoniter` and `json`. However, you can also see that this message codex also take significantly higher memory compared to both of them. So pick your choice between speed and memory. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
+As you can see. This Simple Message Codec provides higher throughput compared to `jsoniter` and `json`. However, you can also see that this message codec also take significantly higher memory compared to both of them. So pick your choice between speed and memory. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
