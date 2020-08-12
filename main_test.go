@@ -7,8 +7,7 @@ import (
 )
 
 type TestKit struct {
-	codec   IMessageCodec
-	encoder IValueEncoder
+	codec IMessageCodec
 }
 
 func (t *TestKit) setUp() {
@@ -22,11 +21,9 @@ func (t *TestKit) setDown() {
 func NewTestKit() *TestKit {
 
 	messageCodec := NewSimpleMessageCodec()
-	valueEncoder := NewSimpleValueEncoder()
 
 	testKit := &TestKit{
-		codec:   messageCodec,
-		encoder: valueEncoder,
+		codec: messageCodec,
 	}
 	return testKit
 }

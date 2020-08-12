@@ -1,24 +1,28 @@
-package gosmc
+package encoder
 
 import (
 	"reflect"
 	"testing"
-
-	"github.com/firmanmm/gosmc/encoder"
 )
 
-type MockValueEncoder struct {
+type MockValueEncoderData struct {
+	Value int
 }
 
-func (m *MockValueEncoder) Encode(dataType encoder.ValueEncoderType, data interface{}) ([]byte, error) {
-	return []byte{byte(data.(int))}, nil
+type MockValueEncoderUnit struct{}
+
+func (m *MockValueEncoderUnit) Encode(data interface{}) ([]byte, error) {
+	return []byte{byte(data.(MockValueEncoderData).Value)}, nil
 }
 
-func (m *MockValueEncoder) Decode(data []byte) (interface{}, error) {
-	return int(data[0]), nil
+func (m *MockValueEncoderUnit) Decode(data []byte) (interface{}, error) {
+	value := int(data[0])
+	return MockValueEncoderData{
+		Value: value,
+	}, nil
 }
 
-func TestMessageCodecBehaviour(t *testing.T) {
+func TestValueEncoderBehaviour(t *testing.T) {
 
 	testData := []struct {
 		Name     string
@@ -27,23 +31,27 @@ func TestMessageCodecBehaviour(t *testing.T) {
 	}{
 		{
 			"Accepted",
-			1,
+			MockValueEncoderData{
+				Value: 1,
+			},
 			false,
 		},
 	}
 
-	codec := NewSimpleMessageCodec()
-
+	encoder := NewValueEncoder(map[ValueEncoderType]IValueEncoderUnit{
+		GeneralValueEncoder: &MockValueEncoderUnit{},
+		UintValueEncoder:    NewUintEncoder(),
+	})
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := codec.Encode(val.Value)
+			encoded, err := encoder.Encode(val.Value)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
 			if reflect.DeepEqual(encoded, val.Value) {
 				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)
 			}
-			decoded, err := codec.Decode(encoded)
+			decoded, err := encoder.Decode(encoded)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
@@ -52,4 +60,5 @@ func TestMessageCodecBehaviour(t *testing.T) {
 			}
 		})
 	}
+
 }

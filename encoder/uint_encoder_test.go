@@ -1,47 +1,44 @@
-package gosmc
+package encoder
 
 import (
+	"math"
 	"reflect"
 	"testing"
 )
 
-type MockValueEncoderUnit struct{}
-
-func (m *MockValueEncoderUnit) Encode(data interface{}) ([]byte, error) {
-	return []byte{byte(data.(int))}, nil
-}
-
-func (m *MockValueEncoderUnit) Decode(data []byte) (interface{}, error) {
-	return byte(data[0]), nil
-}
-
-func TestValueEncoderBehaviour(t *testing.T) {
-
+func TestUintEncoder(t *testing.T) {
 	testData := []struct {
 		Name     string
-		DataType ValueEncoderType
-		Value    interface{}
+		Value    uint
 		HasError bool
 	}{
 		{
-			"Accepted",
-			9999,
-			1,
+			"Zero",
+			0,
 			false,
 		},
 		{
-			"Fail Case",
-			0,
+			"Max",
+			uint(math.MaxUint64),
+			false,
+		},
+		{
+			"10000",
 			10000,
-			true,
+			false,
+		},
+		{
+			"123456789",
+			123456789,
+			false,
 		},
 	}
 
-	encoder := NewSimpleValueEncoder()
-	encoder.encoders[9999] = &MockValueEncoderUnit{}
+	encoder := NewUintEncoder()
+
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := encoder.Encode(val.DataType, val.Value)
+			encoded, err := encoder.Encode(val.Value)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
@@ -57,5 +54,4 @@ func TestValueEncoderBehaviour(t *testing.T) {
 			}
 		})
 	}
-
 }

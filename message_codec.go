@@ -1,29 +1,14 @@
 package gosmc
 
+import "github.com/firmanmm/gosmc/encoder"
+
 type IMessageCodec interface {
 	Encode(interface{}) ([]byte, error)
 	Decode([]byte) (interface{}, error)
 }
 
-type IValueEncoder interface {
-	Encode(ValueEncoderType, interface{}) ([]byte, error)
-	Decode([]byte) (interface{}, error)
-}
-
-type ValueEncoderType int
-
-var (
-	Byte      ValueEncoderType = 0
-	Int                        = 1
-	Uint                       = 2
-	Float                      = 3
-	Complex                    = 4
-	ByteArray                  = 5
-	String                     = 6
-)
-
 type SimpleMessageCodec struct {
-	valueEncoder IValueEncoder
+	valueEncoder *encoder.ValueEncoder
 }
 
 func (s *SimpleMessageCodec) Encode(value interface{}) ([]byte, error) {
