@@ -54,6 +54,12 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 			data = newData
 			encoderUsed = ListValueEncoder
 		case reflect.Map:
+			keys := reflected.MapKeys()
+			newData := make(map[interface{}]interface{})
+			for _, val := range keys {
+				newData[val] = reflected.MapIndex(val)
+			}
+			data = newData
 			encoderUsed = MapValueEncoder
 		default:
 			_, ok := s.encoders[GeneralValueEncoder]
