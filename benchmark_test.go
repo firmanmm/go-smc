@@ -1,10 +1,30 @@
 package gosmc
 
 import (
+	"encoding/json"
 	"testing"
 
 	jsoniter "github.com/json-iterator/go"
 )
+
+func BenchmarkArrayOfByteJson(b *testing.B) {
+	data := make([]byte, 10000)
+	for i := 0; i < len(data); i++ {
+		data[i] = byte(i % 256)
+	}
+
+	var dest interface{}
+	for i := 0; i < b.N; i++ {
+		res, err := json.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = json.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
 
 func BenchmarkArrayOfByteJsoniter(b *testing.B) {
 	data := make([]byte, 10000)
@@ -39,6 +59,30 @@ func BenchmarkArrayOfByteSMC(b *testing.B) {
 			b.Error(err.Error())
 		}
 		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkNestedArrayOfByteJson(b *testing.B) {
+	childData := make([]byte, 10000)
+	for i := 0; i < len(childData); i++ {
+		childData[i] = byte(i % 256)
+	}
+
+	data := make([][]byte, 100)
+	for i := 0; i < 10; i++ {
+		data[i] = childData
+	}
+
+	var dest interface{}
+	for i := 0; i < b.N; i++ {
+		res, err := json.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = json.Unmarshal(res, &dest); err != nil {
 			b.Error(err.Error())
 		}
 	}
@@ -210,6 +254,25 @@ func BenchmarkDeepInterfaceMapSMC(b *testing.B) {
 	}
 }
 
+func BenchmarkStringJson(b *testing.B) {
+	data := "A"
+	for i := 0; i < 10; i++ {
+		data += data
+	}
+
+	var dest interface{}
+	for i := 0; i < b.N; i++ {
+		res, err := json.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = json.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
 func BenchmarkStringJsoniter(b *testing.B) {
 	data := "A"
 	for i := 0; i < 10; i++ {
@@ -243,6 +306,30 @@ func BenchmarkStringSMC(b *testing.B) {
 			b.Error(err.Error())
 		}
 		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkListStringJson(b *testing.B) {
+	childData := "A"
+	for i := 0; i < 10; i++ {
+		childData += childData
+	}
+
+	data := make([]string, 100)
+	for i := 0; i < 100; i++ {
+		data[i] = childData
+	}
+
+	var dest interface{}
+	for i := 0; i < b.N; i++ {
+		res, err := json.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = json.Unmarshal(res, &dest); err != nil {
 			b.Error(err.Error())
 		}
 	}
