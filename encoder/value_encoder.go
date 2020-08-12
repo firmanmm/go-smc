@@ -32,11 +32,38 @@ type ValueEncoder struct {
 func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 	encoderUsed := ValueEncoderType(0)
 	switch data.(type) {
-	case int8, int16, int32, int64, int:
+	case int8:
+		data = int(data.(int8))
 		encoderUsed = IntValueEncoder
-	case uint8, uint16, uint32, uint64, uint:
+	case int16:
+		data = int(data.(int16))
+		encoderUsed = IntValueEncoder
+	case int32:
+		data = int(data.(int32))
+		encoderUsed = IntValueEncoder
+	case int64:
+		data = int(data.(int64))
+		encoderUsed = IntValueEncoder
+	case int:
+		encoderUsed = IntValueEncoder
+	case uint8:
+		data = uint(data.(uint8))
 		encoderUsed = UintValueEncoder
-	case float32, float64:
+	case uint16:
+		data = uint(data.(uint16))
+		encoderUsed = UintValueEncoder
+	case uint32:
+		data = uint(data.(uint32))
+		encoderUsed = UintValueEncoder
+	case uint64:
+		data = uint(data.(uint64))
+		encoderUsed = UintValueEncoder
+	case uint:
+		encoderUsed = UintValueEncoder
+	case float32:
+		data = float64(data.(float32))
+		encoderUsed = FloatValueEncoder
+	case float64:
 		encoderUsed = FloatValueEncoder
 	case []byte:
 		encoderUsed = ByteArrayValueEncoder
@@ -57,7 +84,7 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 			keys := reflected.MapKeys()
 			newData := make(map[interface{}]interface{})
 			for _, val := range keys {
-				newData[val] = reflected.MapIndex(val)
+				newData[val.Interface()] = reflected.MapIndex(val).Interface()
 			}
 			data = newData
 			encoderUsed = MapValueEncoder
