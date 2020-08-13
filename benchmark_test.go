@@ -62,7 +62,25 @@ func BenchmarkArrayOfByteSMC(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
 
+func BenchmarkArrayOfByteSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+
+	data := make([]byte, 10000)
+	for i := 0; i < len(data); i++ {
+		data[i] = byte(i % 256)
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
 }
 
 func BenchmarkNestedArrayOfByteJson(b *testing.B) {
@@ -135,7 +153,30 @@ func BenchmarkNestedArrayOfByteSMC(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
 
+func BenchmarkNestedArrayOfByteSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+
+	childData := make([]byte, 10000)
+	for i := 0; i < len(childData); i++ {
+		childData[i] = byte(i % 256)
+	}
+
+	data := make([][]byte, 100)
+	for i := 0; i < 10; i++ {
+		data[i] = childData
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
 }
 
 func BenchmarkInterfaceMapJsoniter(b *testing.B) {
@@ -163,6 +204,29 @@ func BenchmarkInterfaceMapJsoniter(b *testing.B) {
 
 func BenchmarkInterfaceMapSMC(b *testing.B) {
 	encoder := NewSimpleMessageCodec()
+
+	data := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		11:             "11111",
+		2:              -2,
+		"ww":           "www",
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+}
+
+func BenchmarkInterfaceMapSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
 
 	data := map[interface{}]interface{}{
 		1:              1123.312,
@@ -254,6 +318,41 @@ func BenchmarkDeepInterfaceMapSMC(b *testing.B) {
 	}
 }
 
+func BenchmarkDeepInterfaceMapSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+
+	data := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+	iter := data
+	for i := 0; i < 100; i++ {
+		child := map[interface{}]interface{}{
+			1:              1123.312,
+			"Not A Number": 13123,
+			-1:             "11111",
+			-2:             -2,
+			"ww":           "www",
+		}
+		iter["child"] = child
+		iter = child
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+}
+
 func BenchmarkStringJson(b *testing.B) {
 	data := "A"
 	for i := 0; i < 10; i++ {
@@ -294,6 +393,26 @@ func BenchmarkStringJsoniter(b *testing.B) {
 
 func BenchmarkStringSMC(b *testing.B) {
 	encoder := NewSimpleMessageCodec()
+
+	data := "A"
+	for i := 0; i < 10; i++ {
+		data += data
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkStringSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
 
 	data := "A"
 	for i := 0; i < 10; i++ {
@@ -385,6 +504,33 @@ func BenchmarkListStringSMC(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
+
+func BenchmarkListStringSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+
+	childData := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+
+	data := make([]interface{}, 100)
+	for i := 0; i < 100; i++ {
+		data[i] = childData
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
 
 }
 
@@ -419,12 +565,43 @@ func BenchmarkListOfMapJsoniter(b *testing.B) {
 func BenchmarkListOfMapSMC(b *testing.B) {
 	encoder := NewSimpleMessageCodec()
 
-	childData := "A"
-	for i := 0; i < 10; i++ {
-		childData += childData
+	childData := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
 	}
 
-	data := make([]string, 100)
+	data := make([]interface{}, 100)
+	for i := 0; i < 100; i++ {
+		data[i] = childData
+	}
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkListOfMapSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+
+	childData := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+
+	data := make([]interface{}, 100)
 	for i := 0; i < 100; i++ {
 		data[i] = childData
 	}

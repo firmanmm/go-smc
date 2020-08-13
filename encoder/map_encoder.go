@@ -1,11 +1,19 @@
 package encoder
 
+import "reflect"
+
 type MapEncoder struct {
 	valueEncoder *ValueEncoder
 }
 
 func (l *MapEncoder) Encode(data interface{}) ([]byte, error) {
-	dataList := data.(map[interface{}]interface{})
+	reflected := reflect.ValueOf(data)
+	keys := reflected.MapKeys()
+	newData := make(map[interface{}]interface{})
+	for _, val := range keys {
+		newData[val.Interface()] = reflected.MapIndex(val).Interface()
+	}
+	dataList := newData
 	interfaceList := make([]interface{}, 0, len(dataList)*2)
 	for key, val := range dataList {
 		interfaceList = append(interfaceList, key, val)

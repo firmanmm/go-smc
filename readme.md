@@ -1,4 +1,4 @@
-# Go Simple Message Codec
+# Go Simple Message Codec (SMC)
 
 ### Preface
 This is a simple message codec based on `rewritten` version that is used on my `sync-mq` library. I decided to share it with you guys since i think it's ready to be used by the public. Feel free to improve this repository.
@@ -8,33 +8,42 @@ Well this is a message codec. It's mainly used to pack and unpack together a bun
 
 # Comparison
 
-Well this is the comparison of `this` against `json` and `jsoniter` :
+Well this is the comparison of `smc` against `json`, `jsoniter` and `smc backed with jsoniter` :
 
 ```
 goos: windows
 goarch: amd64
 pkg: github.com/firmanmm/gosmc
-BenchmarkArrayOfByteJson-8             	    9254	    125682 ns/op	   28661 B/op	       6 allocs/op
-BenchmarkArrayOfByteJsoniter-8         	   23474	     51588 ns/op	   40895 B/op	       5 allocs/op
-BenchmarkArrayOfByteSMC-8              	  548414	      1982 ns/op	   10328 B/op	       6 allocs/op
-BenchmarkNestedArrayOfByteJson-8       	     978	   1251901 ns/op	  302938 B/op	      43 allocs/op
-BenchmarkNestedArrayOfByteJsoniter-8   	    2188	    537489 ns/op	  441203 B/op	     142 allocs/op
-BenchmarkNestedArrayOfByteSMC-8        	   12292	     96522 ns/op	  334282 B/op	     635 allocs/op
-BenchmarkInterfaceMapJsoniter-8        	  273252	      4490 ns/op	     775 B/op	      25 allocs/op
-BenchmarkInterfaceMapSMC-8             	  158312	      7701 ns/op	    3334 B/op	     125 allocs/op
-BenchmarkDeepInterfaceMapJsoniter-8    	    2671	    454245 ns/op	   80962 B/op	    2625 allocs/op
-BenchmarkDeepInterfaceMapSMC-8         	     819	   1494765 ns/op	 2278558 B/op	   13925 allocs/op
-BenchmarkStringJson-8                  	  121454	     10048 ns/op	    2385 B/op	       5 allocs/op
-BenchmarkStringJsoniter-8              	  210963	      5754 ns/op	    2210 B/op	       4 allocs/op
-BenchmarkStringSMC-8                   	 1000000	      1000 ns/op	    3256 B/op	       8 allocs/op
-BenchmarkListStringJson-8              	    1279	    938652 ns/op	  219324 B/op	     213 allocs/op
-BenchmarkListStringJsoniter-8          	    2247	    533766 ns/op	  229207 B/op	     311 allocs/op
-BenchmarkListStringSMC-8               	    1562	    794180 ns/op	  366237 B/op	   12715 allocs/op
-BenchmarkListOfMapJsoniter-8           	    2862	    421894 ns/op	   82531 B/op	    2511 allocs/op
-BenchmarkListOfMapSMC-8                	    6684	    164004 ns/op	  549402 B/op	    1015 allocs/op
+BenchmarkArrayOfByteJson-8                    	    9231	    130972 ns/op	   28671 B/op	       6 allocs/op
+BenchmarkArrayOfByteJsoniter-8                	   22716	     53416 ns/op	   40882 B/op	       5 allocs/op
+BenchmarkArrayOfByteSMC-8                     	  480618	      2262 ns/op	   10328 B/op	       6 allocs/op
+BenchmarkArrayOfByteSMCWithJsoniter-8         	  445596	      2262 ns/op	   10328 B/op	       6 allocs/op
+BenchmarkNestedArrayOfByteJson-8              	     946	   1281103 ns/op	  302443 B/op	      43 allocs/op
+BenchmarkNestedArrayOfByteJsoniter-8          	    2187	    559220 ns/op	  441219 B/op	     142 allocs/op
+BenchmarkNestedArrayOfByteSMC-8               	   10000	    104883 ns/op	  334282 B/op	     635 allocs/op
+BenchmarkNestedArrayOfByteSMCWithJsoniter-8   	   10000	    105454 ns/op	  334283 B/op	     635 allocs/op
+BenchmarkInterfaceMapJsoniter-8               	  267372	      4634 ns/op	     775 B/op	      25 allocs/op
+BenchmarkInterfaceMapSMC-8                    	  152240	      7649 ns/op	    2998 B/op	     123 allocs/op
+BenchmarkInterfaceMapSMCWithJsoniter-8        	  256008	      4768 ns/op	     888 B/op	      29 allocs/op
+BenchmarkDeepInterfaceMapJsoniter-8           	    2672	    467265 ns/op	   80933 B/op	    2625 allocs/op
+BenchmarkDeepInterfaceMapSMC-8                	     717	   1617705 ns/op	 2244626 B/op	   13723 allocs/op
+BenchmarkDeepInterfaceMapSMCWithJsoniter-8    	    2617	    465408 ns/op	   89214 B/op	    2630 allocs/op
+BenchmarkStringJson-8                         	  111438	     10375 ns/op	    2385 B/op	       5 allocs/op
+BenchmarkStringJsoniter-8                     	  203958	      5875 ns/op	    2210 B/op	       4 allocs/op
+BenchmarkStringSMC-8                          	 1000000	      1053 ns/op	    3256 B/op	       8 allocs/op
+BenchmarkStringSMCWithJsoniter-8              	 1000000	      1069 ns/op	    3256 B/op	       8 allocs/op
+BenchmarkListStringJson-8                     	    1239	    973822 ns/op	  223814 B/op	     213 allocs/op
+BenchmarkListStringJsoniter-8                 	    2227	    570699 ns/op	  230461 B/op	     311 allocs/op
+BenchmarkListStringSMC-8                      	    1604	    794489 ns/op	  332638 B/op	   12515 allocs/op
+BenchmarkListStringSMCWithJsoniter-8          	    2383	    496786 ns/op	  116872 B/op	    3215 allocs/op
+BenchmarkListOfMapJsoniter-8                  	    2796	    430642 ns/op	   82552 B/op	    2511 allocs/op
+BenchmarkListOfMapSMC-8                       	    1503	    801502 ns/op	  332636 B/op	   12515 allocs/op
+BenchmarkListOfMapSMCWithJsoniter-8           	    2359	    500570 ns/op	  116867 B/op	    3215 allocs/op
+PASS
+ok  	github.com/firmanmm/gosmc	31.536s
 ```
 
-As you can see. This Simple Message Codec provides higher throughput in certain usecase compared to `jsoniter` and `json`. However, you can also see that this message codec also take significantly higher memory compared to both of them. So pick your choice between speed and memory. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
+As you can see. This Simple Message Codec provides higher throughput in certain usecase compared to `jsoniter` and `json`. However, you can also see that this message codec also take significantly higher memory compared to both of them. So pick your choice between speed and memory. If you want to get the best of both world you can use `smc with jsoniter` variant which use `jsoniter` to handle `map` and `struct`. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
 
 ## Note
 I highly recommend that you use `jsoniter` as that is more battle tested than this.

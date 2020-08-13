@@ -41,3 +41,11 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 		valueEncoder: valueEncoder,
 	}
 }
+
+func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
+	current := NewSimpleMessageCodec()
+	jsoniterEncoder := encoder.NewJsoniterEncoder()
+	current.valueEncoder.SetEncoder(encoder.MapValueEncoder, jsoniterEncoder)
+	current.valueEncoder.SetEncoder(encoder.GeneralValueEncoder, jsoniterEncoder)
+	return current
+}
