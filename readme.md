@@ -34,4 +34,7 @@ BenchmarkListOfMapJsoniter-8           	    2862	    421894 ns/op	   82531 B/op	
 BenchmarkListOfMapSMC-8                	    6684	    164004 ns/op	  549402 B/op	    1015 allocs/op
 ```
 
-As you can see. This Simple Message Codec provides higher throughput compared to `jsoniter` and `json`. However, you can also see that this message codec also take significantly higher memory compared to both of them. So pick your choice between speed and memory. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
+As you can see. This Simple Message Codec provides higher throughput in certain usecase compared to `jsoniter` and `json`. However, you can also see that this message codec also take significantly higher memory compared to both of them. So pick your choice between speed and memory. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
+
+## Note
+I highly recommend that you use `jsoniter` as that is more battle tested than this.
