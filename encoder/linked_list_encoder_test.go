@@ -5,12 +5,26 @@ import (
 	"testing"
 )
 
-func TestListEncoder(t *testing.T) {
+func TestLinkedListEncoder(t *testing.T) {
 	testData := []struct {
 		Name     string
 		Value    []interface{}
 		HasError bool
 	}{
+		{
+			"Single Int",
+			[]interface{}{
+				1,
+			},
+			false,
+		},
+		{
+			"Double Int",
+			[]interface{}{
+				1, 2,
+			},
+			false,
+		},
 		{
 			"Int",
 			[]interface{}{
@@ -41,6 +55,36 @@ func TestListEncoder(t *testing.T) {
 		// },
 	}
 
+	byteArrayEncoder := NewNativeLinkedEncoderUnitAdapter(
+		NewByteArrayEncoder(),
+	)
+
+	floatEncoder := NewNativeLinkedEncoderUnitAdapter(
+		NewFloatEncoder(),
+	)
+
+	intEncoder := NewNativeLinkedEncoderUnitAdapter(
+		NewIntEncoder(),
+	)
+
+	stringEncoder := NewNativeLinkedEncoderUnitAdapter(
+		NewStringEncoder(),
+	)
+
+	uintEncoder := NewNativeLinkedEncoderUnitAdapter(
+		NewUintEncoder(),
+	)
+
+	linkedValueEncoder := NewLinkedValueEncoder(
+		map[ValueEncoderType]IValueEncoderLinkedUnit{
+			ByteArrayValueEncoder: byteArrayEncoder,
+			FloatValueEncoder:     floatEncoder,
+			IntValueEncoder:       intEncoder,
+			StringValueEncoder:    stringEncoder,
+			UintValueEncoder:      uintEncoder,
+		},
+	)
+
 	valueEncoder := NewValueEncoder(
 		map[ValueEncoderType]IValueEncoderUnit{
 			IntValueEncoder:   NewIntEncoder(),
@@ -49,8 +93,13 @@ func TestListEncoder(t *testing.T) {
 		},
 	)
 
-	encoder := NewListEncoder(
+	oldEncoder := NewListEncoder(
 		valueEncoder,
+		NewUintEncoder(),
+	)
+
+	encoder := NewLinkedListEncoder(
+		linkedValueEncoder,
 		NewUintEncoder(),
 	)
 	for _, val := range testData {
@@ -59,10 +108,18 @@ func TestListEncoder(t *testing.T) {
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
+			oldEncoded, err := oldEncoder.Encode(val.Value)
+			if err != nil != val.HasError {
+				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
+			}
 			if reflect.DeepEqual(encoded, val.Value) {
 				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)
 			}
-			decoded, err := encoder.Decode(encoded)
+			if !reflect.DeepEqual(encoded.GetResult(), oldEncoded) {
+				t.Errorf("New data is not the same with old data, New : %v, Old : %v", encoded.GetResult(), oldEncoded)
+			}
+
+			decoded, err := encoder.Decode(encoded.GetResult())
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}

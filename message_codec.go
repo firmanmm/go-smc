@@ -1,6 +1,8 @@
 package gosmc
 
-import "github.com/firmanmm/gosmc/encoder"
+import (
+	"github.com/firmanmm/gosmc/encoder"
+)
 
 type IMessageCodec interface {
 	Encode(interface{}) ([]byte, error)
@@ -8,11 +10,16 @@ type IMessageCodec interface {
 }
 
 type SimpleMessageCodec struct {
-	valueEncoder *encoder.ValueEncoder
+	valueEncoder *encoder.LinkedValueEncoder
 }
 
 func (s *SimpleMessageCodec) Encode(value interface{}) ([]byte, error) {
-	return s.valueEncoder.Encode(value)
+	result, err := s.valueEncoder.Encode(value)
+	if err != nil {
+		return nil, err
+	}
+	return result.GetResult(), nil
+
 }
 
 func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
@@ -21,30 +28,51 @@ func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
 
 func NewSimpleMessageCodec() *SimpleMessageCodec {
 
-	valueEncoder := encoder.NewValueEncoder(
-		map[encoder.ValueEncoderType]encoder.IValueEncoderUnit{
-			encoder.ByteArrayValueEncoder: encoder.NewByteArrayEncoder(),
-			encoder.FloatValueEncoder:     encoder.NewFloatEncoder(),
-			encoder.IntValueEncoder:       encoder.NewIntEncoder(),
-			encoder.StringValueEncoder:    encoder.NewStringEncoder(),
-			encoder.UintValueEncoder:      encoder.NewUintEncoder(),
-		},
+	byteArrayEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewByteArrayEncoder(),
 	)
 
-	listEncoder := encoder.NewListEncoder(valueEncoder, encoder.NewUintEncoder())
-	mapEncoder := encoder.NewMapEncoder(valueEncoder)
+	floatEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewFloatEncoder(),
+	)
 
-	valueEncoder.SetEncoder(encoder.ListValueEncoder, listEncoder)
-	valueEncoder.SetEncoder(encoder.MapValueEncoder, mapEncoder)
+	intEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewIntEncoder(),
+	)
+
+	stringEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewStringEncoder(),
+	)
+
+	uintEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewUintEncoder(),
+	)
+
+	linkedValueEncoder := encoder.NewLinkedValueEncoder(
+		map[encoder.ValueEncoderType]encoder.IValueEncoderLinkedUnit{
+			encoder.ByteArrayValueEncoder: byteArrayEncoder,
+			encoder.FloatValueEncoder:     floatEncoder,
+			encoder.IntValueEncoder:       intEncoder,
+			encoder.StringValueEncoder:    stringEncoder,
+			encoder.UintValueEncoder:      uintEncoder,
+		})
+
+	listLinkedEncoder := encoder.NewLinkedListEncoder(linkedValueEncoder, encoder.NewUintEncoder()) //TODO
+	mapLinkedEncoder := encoder.NewLinkedMapEncoder(linkedValueEncoder, encoder.NewUintEncoder())   //TODO
+
+	linkedValueEncoder.SetEncoder(encoder.ListValueEncoder, listLinkedEncoder)
+	linkedValueEncoder.SetEncoder(encoder.MapValueEncoder, mapLinkedEncoder)
 
 	return &SimpleMessageCodec{
-		valueEncoder: valueEncoder,
+		valueEncoder: linkedValueEncoder,
 	}
 }
 
 func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	current := NewSimpleMessageCodec()
-	jsoniterEncoder := encoder.NewJsoniterEncoder()
+	jsoniterEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
+		encoder.NewJsoniterEncoder(),
+	)
 	current.valueEncoder.SetEncoder(encoder.MapValueEncoder, jsoniterEncoder)
 	current.valueEncoder.SetEncoder(encoder.GeneralValueEncoder, jsoniterEncoder)
 	return current
