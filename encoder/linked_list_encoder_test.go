@@ -39,6 +39,21 @@ func TestLinkedListEncoder(t *testing.T) {
 			},
 			false,
 		},
+		{
+			"String",
+			[]interface{}{
+				"a",
+				"aaaa",
+				"aaaannnnnccccc",
+				"adadadadadada",
+				"This is not a text",
+				"12345 23134",
+				"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+				"abcd!@##$@!@",
+				"+_)+(_*(*&*%^&^$%$#AZRXSETCDRYVFTUBGYINHUOMJIP<KO{>LP",
+			},
+			false,
+		},
 
 		/// Can't use reflect deep equal because returned type is now interface{}
 		// {
@@ -87,9 +102,10 @@ func TestLinkedListEncoder(t *testing.T) {
 
 	valueEncoder := NewValueEncoder(
 		map[ValueEncoderType]IValueEncoderUnit{
-			IntValueEncoder:   NewIntEncoder(),
-			UintValueEncoder:  NewUintEncoder(),
-			FloatValueEncoder: NewFloatEncoder(),
+			IntValueEncoder:    NewIntEncoder(),
+			UintValueEncoder:   NewUintEncoder(),
+			FloatValueEncoder:  NewFloatEncoder(),
+			StringValueEncoder: NewStringEncoder(),
 		},
 	)
 
@@ -106,11 +122,11 @@ func TestLinkedListEncoder(t *testing.T) {
 		t.Run(val.Name, func(t *testing.T) {
 			encoded, err := encoder.Encode(val.Value)
 			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
+				t.Errorf("Expected error value of %v but got %v, error %v", val.HasError, err != nil, err)
 			}
 			oldEncoded, err := oldEncoder.Encode(val.Value)
 			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
+				t.Errorf("Expected error value of %v but got %v, error %v", val.HasError, err != nil, err)
 			}
 			if reflect.DeepEqual(encoded, val.Value) {
 				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)

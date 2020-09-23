@@ -1,5 +1,9 @@
 package encoder
 
+import (
+	"bytes"
+)
+
 type _LinkedByteNode struct {
 	next *_LinkedByteNode
 	data []byte
@@ -13,67 +17,42 @@ Already checked some with 5K and 8K star but they didn't provide a simple and dy
 So i have to make a simple wheel
 */
 type LinkedByte struct {
-	start  *_LinkedByteNode
-	end    *_LinkedByteNode
+	buffer *bytes.Buffer
 	result []byte
-	length int
-	size   int
 }
 
 func (l *LinkedByte) WriteByte(data byte) {
-	l.Write([]byte{data})
+	l.buffer.WriteByte(data)
 }
 
 func (l *LinkedByte) Write(data []byte) {
-	node := &_LinkedByteNode{
-		data: data,
-	}
-	if l.start == nil {
-		l.start = node
-		l.end = node
-	} else {
-		l.end.next = node
-		l.end = node
-	}
-	l.length++
-	l.size += len(data)
+	l.buffer.Write(data)
 
 	//if new data is written then invalidate the cache
 	l.result = nil
 }
 
 func (l *LinkedByte) Merge(other *LinkedByte) {
-	l.end.next = other.start
-	l.end = other.end
-	l.size += other.size
+	other.buffer.WriteTo(l.buffer)
 }
 
 func (l *LinkedByte) GetResult() []byte {
 	if l.result == nil {
-		if l.start == nil {
-			l.result = []byte{}
-		} else {
-			l.result = l.toByte()
-		}
+		l.result = l.toByte()
 	}
 	return l.result
 }
 
 func (l *LinkedByte) toByte() []byte {
-	iter := l.start
-	//Should be able avoid reallocation due to resize
-	data := make([]byte, 0, l.size)
-	for iter != nil {
-		data = append(data, iter.data...)
-		iter = iter.next
-	}
-	return data
+	return l.buffer.Bytes()
 }
 
 func (l *LinkedByte) GetSize() int {
-	return l.size
+	return l.buffer.Len()
 }
 
 func NewLinkedByte() *LinkedByte {
-	return &LinkedByte{}
+	return &LinkedByte{
+		buffer: bytes.NewBuffer(nil),
+	}
 }

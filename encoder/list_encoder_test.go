@@ -25,6 +25,21 @@ func TestListEncoder(t *testing.T) {
 			},
 			false,
 		},
+		{
+			"String",
+			[]interface{}{
+				"a",
+				"aaaa",
+				"aaaannnnnccccc",
+				"adadadadadada",
+				"This is not a text",
+				"12345 23134",
+				"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+				"abcd!@##$@!@",
+				"+_)+(_*(*&*%^&^$%$#AZRXSETCDRYVFTUBGYINHUOMJIP<KO{>LP",
+			},
+			false,
+		},
 
 		/// Can't use reflect deep equal because returned type is now interface{}
 		// {
@@ -43,9 +58,10 @@ func TestListEncoder(t *testing.T) {
 
 	valueEncoder := NewValueEncoder(
 		map[ValueEncoderType]IValueEncoderUnit{
-			IntValueEncoder:   NewIntEncoder(),
-			UintValueEncoder:  NewUintEncoder(),
-			FloatValueEncoder: NewFloatEncoder(),
+			IntValueEncoder:    NewIntEncoder(),
+			UintValueEncoder:   NewUintEncoder(),
+			FloatValueEncoder:  NewFloatEncoder(),
+			StringValueEncoder: NewStringEncoder(),
 		},
 	)
 

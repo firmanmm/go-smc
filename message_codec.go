@@ -26,6 +26,7 @@ func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
 	return s.valueEncoder.Decode(data)
 }
 
+//Construct new SMC with default encoder
 func NewSimpleMessageCodec() *SimpleMessageCodec {
 
 	byteArrayEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(
@@ -68,6 +69,7 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 	}
 }
 
+//Construct new SMC with default encoder and jsoniter backend
 func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	current := NewSimpleMessageCodec()
 	jsoniterEncoder := encoder.NewNativeLinkedEncoderUnitAdapter(

@@ -14,6 +14,7 @@ func BenchmarkArrayOfByteJson(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := json.Marshal(data)
 		if err != nil {
@@ -33,6 +34,8 @@ func BenchmarkArrayOfByteJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -52,6 +55,7 @@ func BenchmarkArrayOfByteSMC(b *testing.B) {
 	for i := 0; i < len(data); i++ {
 		data[i] = byte(i % 256)
 	}
+	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
@@ -71,6 +75,7 @@ func BenchmarkArrayOfByteSMCWithJsoniter(b *testing.B) {
 	for i := 0; i < len(data); i++ {
 		data[i] = byte(i % 256)
 	}
+	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
@@ -95,6 +100,7 @@ func BenchmarkNestedArrayOfByteJson(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := json.Marshal(data)
 		if err != nil {
@@ -119,6 +125,8 @@ func BenchmarkNestedArrayOfByteJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -144,6 +152,8 @@ func BenchmarkNestedArrayOfByteSMC(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -168,6 +178,7 @@ func BenchmarkNestedArrayOfByteSMCWithJsoniter(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -190,6 +201,8 @@ func BenchmarkInterfaceMapJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -213,6 +226,7 @@ func BenchmarkInterfaceMapSMC(b *testing.B) {
 		"ww":           "www",
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -227,7 +241,6 @@ func BenchmarkInterfaceMapSMC(b *testing.B) {
 
 func BenchmarkInterfaceMapSMCWithJsoniter(b *testing.B) {
 	encoder := NewSimpleMessageCodecWithJsoniter()
-
 	data := map[interface{}]interface{}{
 		1:              1123.312,
 		"Not A Number": 13123,
@@ -235,6 +248,8 @@ func BenchmarkInterfaceMapSMCWithJsoniter(b *testing.B) {
 		2:              -2,
 		"ww":           "www",
 	}
+
+	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
@@ -271,6 +286,7 @@ func BenchmarkDeepInterfaceMapJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -306,6 +322,7 @@ func BenchmarkDeepInterfaceMapSMC(b *testing.B) {
 		iter = child
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -341,6 +358,7 @@ func BenchmarkDeepInterfaceMapSMCWithJsoniter(b *testing.B) {
 		iter = child
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -360,6 +378,7 @@ func BenchmarkStringJson(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := json.Marshal(data)
 		if err != nil {
@@ -379,6 +398,8 @@ func BenchmarkStringJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -399,6 +420,7 @@ func BenchmarkStringSMC(b *testing.B) {
 		data += data
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -419,6 +441,7 @@ func BenchmarkStringSMCWithJsoniter(b *testing.B) {
 		data += data
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -442,6 +465,7 @@ func BenchmarkListStringJson(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	var dest interface{}
 	for i := 0; i < b.N; i++ {
 		res, err := json.Marshal(data)
@@ -467,6 +491,7 @@ func BenchmarkListStringJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -495,6 +520,7 @@ func BenchmarkListStringSMC(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -522,6 +548,7 @@ func BenchmarkListStringSMCWithJsoniter(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -550,6 +577,8 @@ func BenchmarkListOfMapJsoniter(b *testing.B) {
 	}
 
 	var dest interface{}
+
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := jsoniter.Marshal(data)
 		if err != nil {
@@ -578,6 +607,7 @@ func BenchmarkListOfMapSMC(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
@@ -606,6 +636,7 @@ func BenchmarkListOfMapSMCWithJsoniter(b *testing.B) {
 		data[i] = childData
 	}
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		res, err := encoder.Encode(data)
 		if err != nil {
