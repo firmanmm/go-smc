@@ -8,7 +8,7 @@ type ListEncoder struct {
 }
 
 func (l *ListEncoder) Encode(data interface{}) ([]byte, error) {
-	reflected := data.(reflect.Value)
+	reflected := reflect.ValueOf(data)
 	reflectedLen := reflected.Len()
 	encodedList := make([][]byte, 0, reflectedLen)
 	for i := 0; i < reflectedLen; i++ {
