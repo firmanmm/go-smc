@@ -19,6 +19,7 @@ func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
 	return s.valueEncoder.Decode(data)
 }
 
+//Creates new message codec with default encoder
 func NewSimpleMessageCodec() *SimpleMessageCodec {
 
 	valueEncoder := encoder.NewValueEncoder(
@@ -42,6 +43,7 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 	}
 }
 
+//Creates new message codec but uses Jsoniter to handle struct and map
 func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	current := NewSimpleMessageCodec()
 	jsoniterEncoder := encoder.NewJsoniterEncoder()
