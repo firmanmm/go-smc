@@ -1,15 +1,18 @@
 package encoder
 
+import "reflect"
+
 type ListEncoder struct {
 	valueEncoder *ValueEncoder
 	uintEncoder  *UintEncoder
 }
 
 func (l *ListEncoder) Encode(data interface{}) ([]byte, error) {
-	dataList := data.([]interface{})
-	encodedList := make([][]byte, 0, len(dataList))
-	for _, val := range dataList {
-		encoded, err := l.valueEncoder.Encode(val)
+	reflected := data.(reflect.Value)
+	reflectedLen := reflected.Len()
+	encodedList := make([][]byte, 0, reflectedLen)
+	for i := 0; i < reflectedLen; i++ {
+		encoded, err := l.valueEncoder.Encode(reflected.Index(i).Interface())
 		if err != nil {
 			return nil, err
 		}

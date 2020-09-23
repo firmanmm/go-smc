@@ -74,14 +74,10 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 		reflected := reflect.ValueOf(data)
 		switch reflected.Kind() {
 		case reflect.Slice:
-			reflectedLength := reflected.Len()
-			newData := make([]interface{}, reflectedLength)
-			for i := 0; i < reflectedLength; i++ {
-				newData[i] = reflected.Index(i).Interface()
-			}
-			data = newData
+			data = reflected
 			encoderUsed = ListValueEncoder
 		case reflect.Map:
+			data = reflected
 			encoderUsed = MapValueEncoder
 		default:
 			_, ok := s.encoders[GeneralValueEncoder]

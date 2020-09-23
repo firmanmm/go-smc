@@ -515,15 +515,12 @@ func BenchmarkListStringJsoniter(b *testing.B) {
 func BenchmarkListStringSMC(b *testing.B) {
 	encoder := NewSimpleMessageCodec()
 
-	childData := map[interface{}]interface{}{
-		1:              1123.312,
-		"Not A Number": 13123,
-		-1:             "11111",
-		-2:             -2,
-		"ww":           "www",
+	childData := "A"
+	for i := 0; i < 10; i++ {
+		childData += childData
 	}
 
-	data := make([]interface{}, 100)
+	data := make([]string, 100)
 	for i := 0; i < 100; i++ {
 		data[i] = childData
 	}
@@ -544,19 +541,15 @@ func BenchmarkListStringSMC(b *testing.B) {
 func BenchmarkListStringSMCWithJsoniter(b *testing.B) {
 	encoder := NewSimpleMessageCodecWithJsoniter()
 
-	childData := map[interface{}]interface{}{
-		1:              1123.312,
-		"Not A Number": 13123,
-		-1:             "11111",
-		-2:             -2,
-		"ww":           "www",
+	childData := "A"
+	for i := 0; i < 10; i++ {
+		childData += childData
 	}
 
-	data := make([]interface{}, 100)
+	data := make([]string, 100)
 	for i := 0; i < 100; i++ {
 		data[i] = childData
 	}
-
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
