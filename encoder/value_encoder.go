@@ -2,6 +2,7 @@ package encoder
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 )
 
@@ -95,7 +96,11 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 }
 
 func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}) ([]byte, error) {
-	result, err := v.encoders[dataType].Encode(data)
+	dataEncoder, ok := v.encoders[dataType]
+	if !ok {
+		return nil, fmt.Errorf("Data Type encoder not registered for data %v", data)
+	}
+	result, err := dataEncoder.Encode(data)
 	if err != nil {
 		return nil, err
 	}
