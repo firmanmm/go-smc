@@ -2,6 +2,7 @@ package encoder
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 )
 
@@ -58,12 +59,6 @@ func (s *LinkedValueEncoder) Encode(data interface{}) (*LinkedByte, error) {
 		reflected := reflect.ValueOf(data)
 		switch reflected.Kind() {
 		case reflect.Slice:
-			reflectedLength := reflected.Len()
-			newData := make([]interface{}, reflectedLength)
-			for i := 0; i < reflectedLength; i++ {
-				newData[i] = reflected.Index(i).Interface()
-			}
-			data = newData
 			encoderUsed = ListValueEncoder
 		case reflect.Map:
 			encoderUsed = MapValueEncoder
@@ -100,11 +95,19 @@ func (v *LinkedValueEncoder) Decode(data []byte) (interface{}, error) {
 	decoderUsed := ValueEncoderType(data[0])
 	sizeLength := uint(data[1])
 	endSizeIdx := 2 + sizeLength
-	dataLength, err := v.encoders[UintValueEncoder].Decode(data[2:endSizeIdx])
+	uintEncoder, ok := v.encoders[UintValueEncoder]
+	if !ok {
+		return nil, errors.New("Uint Encoder not registered")
+	}
+	dataLength, err := uintEncoder.Decode(data[2:endSizeIdx])
 	if err != nil {
 		return nil, err
 	}
-	decoded, err := v.encoders[decoderUsed].Decode(data[endSizeIdx : endSizeIdx+dataLength.(uint)])
+	decoder, ok := v.encoders[decoderUsed]
+	if !ok {
+		return nil, fmt.Errorf("Decoder not found for data type %d", decoderUsed)
+	}
+	decoded, err := decoder.Decode(data[endSizeIdx : endSizeIdx+dataLength.(uint)])
 	return decoded, err
 }
 

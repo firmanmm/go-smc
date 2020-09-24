@@ -1,5 +1,7 @@
 package encoder
 
+import "reflect"
+
 type LinkedListEncoder struct {
 	valueEncoder *LinkedValueEncoder
 	uintEncoder  *UintEncoder
@@ -7,17 +9,17 @@ type LinkedListEncoder struct {
 
 func (l *LinkedListEncoder) Encode(data interface{}) (*LinkedByte, error) {
 	output := NewLinkedByte()
-
-	dataList := data.([]interface{})
-
-	childCount, err := l.uintEncoder.Encode(uint(len(dataList)))
+	reflected := reflect.ValueOf(data)
+	reflectLength := reflected.Len()
+	childCount, err := l.uintEncoder.Encode(uint(reflectLength))
 	if err != nil {
 		return nil, err
 	}
 	output.WriteByte(byte(len(childCount)))
 	output.Write(childCount)
 
-	for _, val := range dataList {
+	for i := 0; i < reflectLength; i++ {
+		val := reflected.Index(i).Interface()
 		result, err := l.valueEncoder.Encode(val)
 		if err != nil {
 			return nil, err

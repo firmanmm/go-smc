@@ -10,18 +10,18 @@ type LinkedMapEncoder struct {
 func (l *LinkedMapEncoder) Encode(data interface{}) (*LinkedByte, error) {
 	output := NewLinkedByte()
 	reflected := reflect.ValueOf(data)
-	keys := reflected.MapKeys()
+	mapEntry := reflected.MapRange()
 
-	childCount, err := l.uintEncoder.Encode(uint(len(keys)))
+	childCount, err := l.uintEncoder.Encode(uint(reflected.Len()))
 	if err != nil {
 		return nil, err
 	}
 	output.WriteByte(byte(len(childCount)))
 	output.Write(childCount)
 
-	for _, rawVal := range keys {
-		key := rawVal.Interface()
-		value := reflected.MapIndex(rawVal).Interface()
+	for mapEntry.Next() {
+		key := mapEntry.Key().Interface()
+		value := mapEntry.Value().Interface()
 		err := l.mapVal(key, value, output)
 		if err != nil {
 			return nil, err
