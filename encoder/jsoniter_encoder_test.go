@@ -1,15 +1,17 @@
 package encoder
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
 
 func TestJsoniterEncoder(t *testing.T) {
 	testData := []struct {
-		Name     string
-		Value    map[interface{}]interface{}
-		HasError bool
+		Name       string
+		Value      interface{}
+		HasError   bool
+		ExactMatch bool
 	}{
 		{
 			"Int",
@@ -21,6 +23,7 @@ func TestJsoniterEncoder(t *testing.T) {
 				-3: -9,
 			},
 			false,
+			true,
 		},
 		{
 			"Combined",
@@ -32,6 +35,7 @@ func TestJsoniterEncoder(t *testing.T) {
 				"ww":           "www",
 			},
 			false,
+			true,
 		},
 	}
 
@@ -67,8 +71,17 @@ func TestJsoniterEncoder(t *testing.T) {
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
-			if !reflect.DeepEqual(val.Value, decoded) {
-				t.Errorf("Expected %v but got %v", val.Value, decoded)
+			if val.ExactMatch {
+				if !reflect.DeepEqual(val.Value, decoded) {
+					t.Errorf("Expected %v but got %v", val.Value, decoded)
+				}
+			} else {
+				originalString := fmt.Sprintf("%v", val.Value)
+				decodedString := fmt.Sprintf("%v", decoded)
+
+				if !(originalString == decodedString) {
+					t.Errorf("Expected %v but got %v", val.Value, decoded)
+				}
 			}
 		})
 	}

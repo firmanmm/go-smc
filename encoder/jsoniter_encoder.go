@@ -1,6 +1,8 @@
 package encoder
 
-import jsoniter "github.com/json-iterator/go"
+import (
+	jsoniter "github.com/json-iterator/go"
+)
 
 type JsoniterEncoder struct {
 }
