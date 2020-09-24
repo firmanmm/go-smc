@@ -33,6 +33,24 @@ func TestMapEncoder(t *testing.T) {
 			},
 			false,
 		},
+		{
+			"Nested",
+			map[interface{}]interface{}{
+				1:              1123.312,
+				"Not A Number": 13123,
+				-1:             "11111",
+				-2:             -2,
+				"ww":           "www",
+				"nested": map[interface{}]interface{}{
+					1:              1123.312,
+					"Not A Number": 13123,
+					-1:             "11111",
+					-2:             -2,
+					"ww":           "www",
+				},
+			},
+			false,
+		},
 	}
 
 	valueEncoder := NewValueEncoder(
