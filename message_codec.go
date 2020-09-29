@@ -14,13 +14,7 @@ type SimpleMessageCodec struct {
 func (s *SimpleMessageCodec) Encode(value interface{}) ([]byte, error) {
 	tracker := encoder.GetBufferTracker()
 	defer encoder.PutBufferTracker(tracker)
-	result, err := s.valueEncoder.Encode(value, tracker)
-	if err != nil {
-		return nil, err
-	}
-	returning := make([]byte, len(result))
-	copy(returning, result)
-	return returning, nil
+	return s.valueEncoder.Encode(value, tracker)
 }
 
 func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {

@@ -21,11 +21,11 @@ var bufferTrackerPool *sync.Pool
 
 func GetBufferTracker() *BufferTracker {
 	buffer := bufferTrackerPool.Get().(*BufferTracker)
+	buffer._Release()
 	return buffer
 }
 
 func PutBufferTracker(bufferTracker *BufferTracker) {
-	bufferTracker._Release()
 	bufferTrackerPool.Put(bufferTracker)
 }
 

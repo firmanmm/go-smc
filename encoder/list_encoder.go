@@ -1,9 +1,6 @@
 package encoder
 
-import (
-	"bytes"
-	"reflect"
-)
+import "reflect"
 
 type ListEncoder struct {
 	valueEncoder *ValueEncoder
@@ -13,34 +10,44 @@ type ListEncoder struct {
 func (l *ListEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
 	reflected := reflect.ValueOf(data)
 	reflectedLen := reflected.Len()
-	buffer := tracker.Get()
-	listLength, err := l.uintEncoder.Encode(uint(reflectedLen), tracker)
-	if err != nil {
-		return nil, err
-	}
-	buffer.WriteByte(byte(len(listLength)))
-	buffer.Write(listLength)
+	encodedList := make([][]byte, 0, reflectedLen)
 	for i := 0; i < reflectedLen; i++ {
 		encoded, err := l.valueEncoder.Encode(reflected.Index(i).Interface(), tracker)
 		if err != nil {
 			return nil, err
 		}
-		if err := l.writePacket(encoded, buffer, tracker); err != nil {
-			return nil, err
-		}
+		encodedList = append(encodedList, encoded)
 	}
-	return buffer.Bytes(), nil
+	return l.merge(encodedList, tracker)
 }
 
-func (l *ListEncoder) writePacket(data []byte, buffer *bytes.Buffer, tracker *BufferTracker) error {
-	length, err := l.uintEncoder.Encode(uint(len(data)), tracker)
-	if err != nil {
-		return err
+func (l *ListEncoder) merge(byteList [][]byte, tracker *BufferTracker) ([]byte, error) {
+	childCount := len(byteList)
+	lengthBytes := make([][]byte, childCount)
+	lengthCounts := make([]byte, childCount)
+	for idx, val := range byteList {
+		length, err := l.uintEncoder.Encode(uint(len(val)), tracker)
+		if err != nil {
+			return nil, err
+		}
+		lengthBytes[idx] = length
+		lengthSize := len(length)
+		lengthCounts[idx] = byte(lengthSize)
 	}
-	buffer.WriteByte(byte(len(length)))
-	buffer.Write(length)
-	buffer.Write(data)
-	return nil
+	childLengthCount, err := l.uintEncoder.Encode(uint(childCount), tracker)
+	if err != nil {
+		return nil, err
+	}
+	childLengthCountLength := len(childLengthCount)
+	payload := tracker.Get()
+	payload.WriteByte(byte(childLengthCountLength))
+	payload.Write(childLengthCount)
+	for idx, val := range byteList {
+		payload.WriteByte(lengthCounts[idx])
+		payload.Write(lengthBytes[idx])
+		payload.Write(val)
+	}
+	return payload.Bytes(), nil
 }
 
 func (l *ListEncoder) Decode(data []byte) (interface{}, error) {

@@ -1,57 +1,66 @@
 package encoder
 
-import (
-	"bytes"
-	"reflect"
-)
+import "reflect"
 
 type MapEncoder struct {
 	uintEncoder  *UintEncoder
 	valueEncoder *ValueEncoder
 }
 
-func (m *MapEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
+func (l *MapEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
 	reflected := reflect.ValueOf(data)
 	pairData := reflected.MapRange()
-	reflectedLen := reflected.Len()
-	buffer := tracker.Get()
-	listLength, err := m.uintEncoder.Encode(uint(reflectedLen*2), tracker)
-	if err != nil {
-		return nil, err
-	}
-	buffer.WriteByte(byte(len(listLength)))
-	buffer.Write(listLength)
+	byteList := make([][]byte, 0, reflected.Len()*2)
 	for pairData.Next() {
 		key := pairData.Key()
 		value := pairData.Value()
-		encodedKey, err := m.valueEncoder.Encode(key.Interface(), tracker)
+		encodedKey, err := l.valueEncoder.Encode(key.Interface(), tracker)
 		if err != nil {
 			return nil, err
 		}
-		if err := m.writePacket(encodedKey, buffer, tracker); err != nil {
-			return nil, err
-		}
-		encodedVal, err := m.valueEncoder.Encode(value.Interface(), tracker)
+		byteList = append(byteList, encodedKey)
+		encodedVal, err := l.valueEncoder.Encode(value.Interface(), tracker)
 		if err != nil {
 			return nil, err
 		}
-		if err := m.writePacket(encodedVal, buffer, tracker); err != nil {
-			return nil, err
-		}
+		byteList = append(byteList, encodedVal)
 	}
-	return buffer.Bytes(), nil
+	return l.merge(byteList, tracker)
 }
 
-func (l *MapEncoder) writePacket(data []byte, buffer *bytes.Buffer, tracker *BufferTracker) error {
-	length, err := l.uintEncoder.Encode(uint(len(data)), tracker)
-	if err != nil {
-		return err
+func (l *MapEncoder) merge(byteList [][]byte, tracker *BufferTracker) ([]byte, error) {
+	childCount := len(byteList)
+	lengthBytes := make([][]byte, childCount)
+	lengthCounts := make([]byte, childCount)
+	payloadSize := childCount
+	for idx, val := range byteList {
+		length, err := l.uintEncoder.Encode(uint(len(val)), tracker)
+		if err != nil {
+			return nil, err
+		}
+		lengthBytes[idx] = length
+		lengthSize := len(length)
+		lengthCounts[idx] = byte(lengthSize)
+		payloadSize += len(val)
+		payloadSize += lengthSize
 	}
-	buffer.WriteByte(byte(len(length)))
-	buffer.Write(length)
-	buffer.Write(data)
-	return nil
+	childLengthCount, err := l.uintEncoder.Encode(uint(childCount), tracker)
+	if err != nil {
+		return nil, err
+	}
+	childLengthCountLength := len(childLengthCount)
+	payloadSize += childLengthCountLength
+	payload := tracker.Get()
+	payload.WriteByte(byte(childLengthCountLength))
+	payload.Write(childLengthCount)
+	for idx, val := range byteList {
+		payload.WriteByte(lengthCounts[idx])
+		payload.Write(lengthBytes[idx])
+		payload.Write(val)
+	}
+	return payload.Bytes(), nil
 }
+
 func (l *MapEncoder) Decode(data []byte) (interface{}, error) {
 
 	rawCount := int(data[0])
