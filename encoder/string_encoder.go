@@ -3,7 +3,7 @@ package encoder
 type StringEncoder struct {
 }
 
-func (s *StringEncoder) Encode(data interface{}) ([]byte, error) {
+func (s *StringEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
 	return []byte(data.(string)), nil
 }
 

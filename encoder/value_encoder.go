@@ -7,7 +7,7 @@ import (
 )
 
 type IValueEncoderUnit interface {
-	Encode(interface{}) ([]byte, error)
+	Encode(interface{}, *BufferTracker) ([]byte, error)
 	Decode([]byte) (interface{}, error)
 }
 
@@ -30,7 +30,7 @@ type ValueEncoder struct {
 	encoders map[ValueEncoderType]IValueEncoderUnit
 }
 
-func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
+func (s *ValueEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
 	encoderUsed := ValueEncoderType(0)
 	switch data.(type) {
 	case int8:
@@ -86,28 +86,28 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 		}
 
 	}
-	return s.encode(encoderUsed, data)
+	return s.encode(encoderUsed, data, tracker)
 }
 
-func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}) ([]byte, error) {
+func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}, tracker *BufferTracker) ([]byte, error) {
 	dataEncoder, ok := v.encoders[dataType]
 	if !ok {
 		return nil, fmt.Errorf("Data Type encoder not registered for data %v", data)
 	}
-	result, err := dataEncoder.Encode(data)
+	result, err := dataEncoder.Encode(data, tracker)
 	if err != nil {
 		return nil, err
 	}
-	sizeLength, err := v.encoders[UintValueEncoder].Encode(uint(len(result)))
+	sizeLength, err := v.encoders[UintValueEncoder].Encode(uint(len(result)), tracker)
 	if err != nil {
 		return nil, err
 	}
-	dataPack := make([]byte, 2, 2+len(sizeLength)+len(result))
-	dataPack[0] = byte(dataType)
-	dataPack[1] = byte(len(sizeLength))
-	dataPack = append(dataPack, sizeLength...)
-	dataPack = append(dataPack, result...)
-	return dataPack, nil
+	dataPack := tracker.Get()
+	dataPack.WriteByte(byte(dataType))
+	dataPack.WriteByte(byte(len(sizeLength)))
+	dataPack.Write(sizeLength)
+	dataPack.Write(result)
+	return dataPack.Bytes(), nil
 }
 
 func (v *ValueEncoder) Decode(data []byte) (interface{}, error) {

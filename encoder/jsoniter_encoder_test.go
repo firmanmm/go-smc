@@ -60,7 +60,8 @@ func TestJsoniterEncoder(t *testing.T) {
 
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := valueEncoder.Encode(val.Value)
+			tracker := GetBufferTracker()
+			encoded, err := valueEncoder.Encode(val.Value, tracker)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
@@ -83,6 +84,7 @@ func TestJsoniterEncoder(t *testing.T) {
 					t.Errorf("Expected %v but got %v", val.Value, decoded)
 				}
 			}
+			PutBufferTracker(tracker)
 		})
 	}
 }

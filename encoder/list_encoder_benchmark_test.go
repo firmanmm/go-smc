@@ -31,7 +31,8 @@ func BenchmarkListEncoder(b *testing.B) {
 	encoder := _GetListEncoder()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		encoded, err := encoder.Encode(testData)
+		tracker := GetBufferTracker()
+		encoded, err := encoder.Encode(testData, tracker)
 		if err != nil {
 			b.Error(err)
 		}
@@ -39,5 +40,6 @@ func BenchmarkListEncoder(b *testing.B) {
 		if err != nil {
 			b.Error(err)
 		}
+		PutBufferTracker(tracker)
 	}
 }
