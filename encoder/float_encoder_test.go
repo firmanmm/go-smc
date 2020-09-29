@@ -63,8 +63,7 @@ func TestFloatEncoder(t *testing.T) {
 
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			tracker := GetBufferTracker()
-			encoded, err := encoder.Encode(val.Value, tracker)
+			encoded, err := encoder.Encode(val.Value)
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
@@ -78,7 +77,6 @@ func TestFloatEncoder(t *testing.T) {
 			if !reflect.DeepEqual(val.Value, decoded) {
 				t.Errorf("Expected %v but got %v", val.Value, decoded)
 			}
-			PutBufferTracker(tracker)
 		})
 	}
 }
