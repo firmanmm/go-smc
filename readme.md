@@ -88,33 +88,33 @@ Well this is the comparison of `smc` against `json`, `jsoniter` and `smc backed 
 goos: windows
 goarch: amd64
 pkg: github.com/firmanmm/gosmc
-BenchmarkArrayOfByteJson-8                    	    8572	    126582 ns/op	   28667 B/op	       6 allocs/op
-BenchmarkArrayOfByteJsoniter-8                	   23683	     50659 ns/op	   40878 B/op	       5 allocs/op
-BenchmarkArrayOfByteSMC-8                     	 2129716	       559 ns/op	      80 B/op	       4 allocs/op
-BenchmarkArrayOfByteSMCWithJsoniter-8         	 2152430	       559 ns/op	      80 B/op	       4 allocs/op
-BenchmarkNestedArrayOfByteJson-8              	     976	   1234435 ns/op	  300628 B/op	      43 allocs/op
-BenchmarkNestedArrayOfByteJsoniter-8          	    2227	    531118 ns/op	  442789 B/op	     142 allocs/op
-BenchmarkNestedArrayOfByteSMC-8               	   18888	     64157 ns/op	   19086 B/op	     330 allocs/op
-BenchmarkNestedArrayOfByteSMCWithJsoniter-8   	   18424	     63711 ns/op	   18907 B/op	     330 allocs/op
-BenchmarkInterfaceMapJsoniter-8               	  267367	      4521 ns/op	     775 B/op	      25 allocs/op
-BenchmarkInterfaceMapSMC-8                    	  152305	      7753 ns/op	    1595 B/op	      70 allocs/op
-BenchmarkInterfaceMapSMCWithJsoniter-8        	  240645	      5172 ns/op	     801 B/op	      27 allocs/op
-BenchmarkDeepInterfaceMapJsoniter-8           	    2148	    472680 ns/op	   80776 B/op	    2625 allocs/op
-BenchmarkDeepInterfaceMapSMC-8                	    1063	   1085559 ns/op	  188193 B/op	    7970 allocs/op
-BenchmarkDeepInterfaceMapSMCWithJsoniter-8    	    2732	    456672 ns/op	   80972 B/op	    2628 allocs/op
-BenchmarkStringJson-8                         	  121538	     10028 ns/op	    2385 B/op	       5 allocs/op
-BenchmarkStringJsoniter-8                     	  214743	      5643 ns/op	    2210 B/op	       4 allocs/op
-BenchmarkStringSMC-8                          	 1293774	       928 ns/op	    2098 B/op	       6 allocs/op
-BenchmarkStringSMCWithJsoniter-8              	 1273238	       944 ns/op	    2098 B/op	       6 allocs/op
-BenchmarkListStringJson-8                     	    1292	    947953 ns/op	  221470 B/op	     213 allocs/op
-BenchmarkListStringJsoniter-8                 	    2269	    527895 ns/op	  230866 B/op	     311 allocs/op
-BenchmarkListStringSMC-8                      	    6684	    164133 ns/op	  295043 B/op	     750 allocs/op
-BenchmarkListStringSMCWithJsoniter-8          	    7076	    165048 ns/op	  295884 B/op	     750 allocs/op
-BenchmarkListOfMapJsoniter-8                  	    2864	    428335 ns/op	   82594 B/op	    2511 allocs/op
-BenchmarkListOfMapSMC-8                       	    1336	    863705 ns/op	  209418 B/op	    7323 allocs/op
-BenchmarkListOfMapSMCWithJsoniter-8           	    2452	    498679 ns/op	   90853 B/op	    2916 allocs/op
+BenchmarkArrayOfByteJson-8                    	    9230	    126206 ns/op	   28724 B/op	       6 allocs/op
+BenchmarkArrayOfByteJsoniter-8                	   23544	     50831 ns/op	   40886 B/op	       5 allocs/op
+BenchmarkArrayOfByteSMC-8                     	  462762	      2431 ns/op	   10343 B/op	       5 allocs/op
+BenchmarkArrayOfByteSMCWithJsoniter-8         	  481266	      3216 ns/op	   10342 B/op	       5 allocs/op
+BenchmarkNestedArrayOfByteJson-8              	     932	   1231682 ns/op	  305641 B/op	      43 allocs/op
+BenchmarkNestedArrayOfByteJsoniter-8          	    2227	    530687 ns/op	  436341 B/op	     141 allocs/op
+BenchmarkNestedArrayOfByteSMC-8               	   14478	     80805 ns/op	  116616 B/op	     327 allocs/op
+BenchmarkNestedArrayOfByteSMCWithJsoniter-8   	   15002	     79643 ns/op	  116196 B/op	     327 allocs/op
+BenchmarkInterfaceMapJsoniter-8               	  267164	      4506 ns/op	     775 B/op	      25 allocs/op
+BenchmarkInterfaceMapSMC-8                    	  167034	      7320 ns/op	    1210 B/op	      68 allocs/op
+BenchmarkInterfaceMapSMCWithJsoniter-8        	  245592	      4926 ns/op	     881 B/op	      28 allocs/op
+BenchmarkDeepInterfaceMapJsoniter-8           	    2614	    455934 ns/op	   80858 B/op	    2625 allocs/op
+BenchmarkDeepInterfaceMapSMC-8                	    1125	   1014177 ns/op	  140587 B/op	    7668 allocs/op
+BenchmarkDeepInterfaceMapSMCWithJsoniter-8    	    2674	    459504 ns/op	   89325 B/op	    2629 allocs/op
+BenchmarkStringJson-8                         	  121495	      9924 ns/op	    2385 B/op	       5 allocs/op
+BenchmarkStringJsoniter-8                     	  214729	      5685 ns/op	    2210 B/op	       4 allocs/op
+BenchmarkStringSMC-8                          	 1000000	      1220 ns/op	    3251 B/op	       7 allocs/op
+BenchmarkStringSMCWithJsoniter-8              	  925653	      1211 ns/op	    3251 B/op	       7 allocs/op
+BenchmarkListStringJson-8                     	    1280	    938920 ns/op	  224190 B/op	     213 allocs/op
+BenchmarkListStringJsoniter-8                 	    2269	    527911 ns/op	  231313 B/op	     311 allocs/op
+BenchmarkListStringSMC-8                      	    8548	    134994 ns/op	  320637 B/op	     707 allocs/op
+BenchmarkListStringSMCWithJsoniter-8          	    9254	    133531 ns/op	  319871 B/op	     707 allocs/op
+BenchmarkListOfMapJsoniter-8                  	    2862	    426892 ns/op	   82506 B/op	    2511 allocs/op
+BenchmarkListOfMapSMC-8                       	    1542	    809141 ns/op	  146674 B/op	    6811 allocs/op
+BenchmarkListOfMapSMCWithJsoniter-8           	    2504	    496290 ns/op	   92483 B/op	    2907 allocs/op
 PASS
-ok  	github.com/firmanmm/gosmc	36.886s
+ok  	github.com/firmanmm/gosmc	36.129s
 ```
 
 As you can see. This Simple Message Codec provides higher throughput in certain usecase compared to `jsoniter` and `json`. However, you can also see that this message codec may also take higher memory compared to `jsoniter`. So pick your choice between speed and memory. If you want to get the best of both world you can use `smc with jsoniter` variant which use `jsoniter` to handle `map` and `struct`. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
