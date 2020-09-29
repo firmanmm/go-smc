@@ -7,7 +7,7 @@ import (
 type JsoniterEncoder struct {
 }
 
-func (j *JsoniterEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
+func (j *JsoniterEncoder) Encode(data interface{}) ([]byte, error) {
 	return jsoniter.Marshal(data)
 }
 

@@ -3,26 +3,28 @@ package encoder
 type UintEncoder struct {
 }
 
-func (i *UintEncoder) Encode(data interface{}, tracker *BufferTracker) ([]byte, error) {
-	byteArray := tracker.Get()
+const _UINT_ENCODER_MAX_ARRAY_LIMIT = 8
+
+func (i *UintEncoder) Encode(data interface{}) ([]byte, error) {
+	byteArray := make([]byte, _UINT_ENCODER_MAX_ARRAY_LIMIT)
 	unsignedData := data.(uint)
 	spaceUsed := 0
-	for unsignedData > 0 {
-		byteArray.WriteByte(byte(unsignedData % 256))
+	for i := _UINT_ENCODER_MAX_ARRAY_LIMIT - 1; unsignedData > 0; i-- {
+		byteArray[i] = byte(unsignedData % 256)
 		unsignedData /= 256
 		spaceUsed++
 	}
-	return byteArray.Bytes(), nil
+	return byteArray[_UINT_ENCODER_MAX_ARRAY_LIMIT-spaceUsed:], nil
 }
 
 func (i *UintEncoder) Decode(data []byte) (interface{}, error) {
-	uintData := uint(0)
+	uIntData := uint(0)
 	multiplier := uint(1)
-	for i := 0; i < len(data); i++ {
-		uintData += uint(data[i]) * multiplier
+	for i := len(data) - 1; i >= 0; i-- {
+		uIntData += uint(data[i]) * multiplier
 		multiplier *= 256
 	}
-	return uintData, nil
+	return uIntData, nil
 }
 
 func NewUintEncoder() *UintEncoder {
