@@ -26,6 +26,9 @@ func (j *JsoniterEncoder) Decode(reader IReader) (interface{}, error) {
 	}
 	var result interface{}
 	data, err := reader.Read(length.(int))
+	if err != nil {
+		return nil, err
+	}
 	if err := jsoniter.Unmarshal(data, &result); err != nil {
 		return nil, err
 	}

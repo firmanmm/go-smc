@@ -1,11 +1,14 @@
 package gosmc
 
 import (
+	"crypto/sha512"
 	"fmt"
 	"reflect"
 	"testing"
 
 	"github.com/firmanmm/gosmc/encoder"
+	jsoniter "github.com/json-iterator/go"
+	"github.com/stretchr/testify/assert"
 )
 
 type MockValueEncoder struct {
@@ -66,6 +69,12 @@ func TestMessageCodecIntegration(t *testing.T) {
 		{
 			"Int",
 			-1,
+			false,
+			true,
+		},
+		{
+			"Bool",
+			true,
 			false,
 			true,
 		},
@@ -216,4 +225,62 @@ func TestMessageCodecIntegration(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestSizeComparison(t *testing.T) {
+
+	sourceMap := map[interface{}]interface{}{
+		11231313:       1123.312,
+		"Not A Number": 13123,
+		-114124141:     "11111",
+		-2542341242:    -2,
+		"ww":           "www",
+	}
+
+	source := make([]interface{}, 0, 1000)
+	for i := 0; i < 1000; i++ {
+		source = append(source, sourceMap)
+	}
+
+	jsoniterRes, err := jsoniter.Marshal(source)
+	assert.Nil(t, err)
+
+	smcEncoder := NewSimpleMessageCodec()
+	smcRes, err := smcEncoder.Encode(source)
+	assert.Nil(t, err)
+
+	t.Log("Size Comparison : ")
+	t.Logf("Jsoniter : %d\n", len(jsoniterRes))
+	t.Logf("SMC : %d\n", len(smcRes))
+
+}
+
+func TestSizeComparisonWithArrayOfByte(t *testing.T) {
+
+	fingerprint := sha512.Sum512([]byte("This is fingerprint"))
+	sourceMap := map[interface{}]interface{}{
+		11231313:       1123.312,
+		"Not A Number": 13123,
+		-114124141:     "11111",
+		-2542341242:    -2,
+		"ww":           "www",
+		"Fingerprint":  fingerprint[:],
+	}
+
+	source := make([]interface{}, 0, 1000)
+	for i := 0; i < 1000; i++ {
+		source = append(source, sourceMap)
+	}
+
+	jsoniterRes, err := jsoniter.Marshal(source)
+	assert.Nil(t, err)
+
+	smcEncoder := NewSimpleMessageCodec()
+	smcRes, err := smcEncoder.Encode(source)
+	assert.Nil(t, err)
+
+	t.Log("Size Comparison : ")
+	t.Logf("Jsoniter : %d\n", len(jsoniterRes))
+	t.Logf("SMC : %d\n", len(smcRes))
+
 }

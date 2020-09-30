@@ -23,6 +23,7 @@ const (
 	StringValueEncoder    ValueEncoderType = 7
 	ListValueEncoder      ValueEncoderType = 8
 	MapValueEncoder       ValueEncoderType = 9
+	BoolValueEncoder      ValueEncoderType = 10
 	GeneralValueEncoder   ValueEncoderType = 255
 )
 
@@ -33,6 +34,8 @@ type ValueEncoder struct {
 func (s *ValueEncoder) Encode(data interface{}, writer IWriter) error {
 	encoderUsed := ValueEncoderType(0)
 	switch data.(type) {
+	case bool:
+		encoderUsed = BoolValueEncoder
 	case int8:
 		data = int(data.(int8))
 		encoderUsed = IntValueEncoder

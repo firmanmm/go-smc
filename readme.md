@@ -6,7 +6,7 @@ This is a simple message codec `rewritten` based on version that is used on my `
 # About
 Well this is a message codec. It's mainly used to pack and unpack together a bunch of data structure into an array of byte to be transported via network. You can think of it like json marshal and unmarshal but friendlier to machine instead of human. This is a work in progress version that may change in the future. However, if you want to use it right now, i suggest you to fork this project so there is no breaking change in the future. (PS: I do it often as i see fit, so I highly recommend that). 
 
-# Comparison
+# Benchmark
 
 Well this is the comparison of `smc` against `json`, `jsoniter` and `smc backed with jsoniter` :
 
@@ -43,11 +43,39 @@ PASS
 ok  	github.com/firmanmm/gosmc	32.629s
 ```
 
+Comparing the output generated and we get :
+```
+=== RUN   TestSizeComparison
+--- PASS: TestSizeComparison (0.01s)
+    message_codec_test.go:252: Size Comparison :
+    message_codec_test.go:253: Jsoniter : 92001
+    message_codec_test.go:254: SMC : 74004
+PASS
+ok      github.com/firmanmm/gosmc       0.536s
+```
+And if we add slice of byte in to the mix then we get : 
+```
+=== RUN   TestSizeComparisonWithArrayOfByte
+--- PASS: TestSizeComparisonWithArrayOfByte (0.01s)
+    message_codec_test.go:282: Size Comparison :
+    message_codec_test.go:283: Jsoniter : 197001
+    message_codec_test.go:284: SMC : 155004
+PASS
+ok      github.com/firmanmm/gosmc       0.513s
+```
+Well, it clearly gives lower output size compared to `jsoniter` with or without having `slice of byte` in the map entry.
+
 As you can see. This Simple Message Codec provides higher throughput in certain usecase compared to `jsoniter` and `json`. However, you can also see that this message codec may also take higher memory compared to `jsoniter`. So pick your choice between speed and memory. If you want to get the best of both world you can use `smc with jsoniter` variant which use `jsoniter` to handle `map` and `struct`. I always open if you want to improve it or maybe you want to create your own version and need some assistance.
 
+## Behavioural Note
+When using `jsoniter`, the decoded `map` version will be in the `map[string]interface{}` format where all keys will be converted into `string`. It also apply to codec instantiated with `NewSimpleMessageCodecWithJsoniter`. 
+
+When using `NewSimpleMessageCodecWith` or `pure implementation`, the decoded `map` will become `map[interface{}]interface{}` and will maintain their original data type. So `int` key will remain `int` and not converted to `string` like `jsoniter`.
+
 ## Todo
-- Improve Map performance (Currently convert to List to handle the map)
+- Improve Map performance (Need to be better than jsoniter)
+- Struct support
 - Make example
 
 ## Note
-I highly recommend that you use `jsoniter` as that is more battle tested than this.
+I highly recommend that you use `jsoniter` as that is more battle tested than this. Also `jsoniter` is easier to read than this (Good luck if you want to read the output when using SMC).

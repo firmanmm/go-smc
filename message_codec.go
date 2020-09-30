@@ -53,6 +53,7 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 			encoder.IntValueEncoder:       encoder.NewIntEncoder(),
 			encoder.StringValueEncoder:    encoder.NewStringEncoder(),
 			encoder.UintValueEncoder:      encoder.NewUintEncoder(),
+			encoder.BoolValueEncoder:      encoder.NewBoolEncoder(),
 		},
 	)
 

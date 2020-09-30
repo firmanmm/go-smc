@@ -5,11 +5,11 @@ type StringEncoder struct {
 }
 
 func (s *StringEncoder) Encode(data interface{}, writer IWriter) error {
-	converted := []byte(data.(string))
+	converted := data.(string)
 	if err := s.intEncoder.Encode(len(converted), writer); err != nil {
 		return err
 	}
-	return writer.Write(converted)
+	return writer.WriteString(converted)
 }
 
 func (s *StringEncoder) Decode(reader IReader) (interface{}, error) {

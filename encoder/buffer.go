@@ -8,6 +8,7 @@ import (
 /////////////////// WRITER PART ////////////////////////
 
 type IWriter interface {
+	WriteString(string) error
 	WriteByte(byte) error
 	Write([]byte) error
 	GetContent() ([]byte, error)
@@ -15,6 +16,11 @@ type IWriter interface {
 
 type BufferWriter struct {
 	buffer *bytes.Buffer
+}
+
+func (b *BufferWriter) WriteString(data string) error {
+	_, err := b.buffer.WriteString(data)
+	return err
 }
 
 func (b *BufferWriter) WriteByte(data byte) error {
