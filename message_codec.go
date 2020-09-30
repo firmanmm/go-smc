@@ -1,6 +1,20 @@
 package gosmc
 
-import "github.com/firmanmm/gosmc/encoder"
+import (
+	"sync"
+
+	"github.com/firmanmm/gosmc/encoder"
+)
+
+var writerPool *sync.Pool
+
+func init() {
+	writerPool = &sync.Pool{
+		New: func() interface{} {
+			return encoder.NewBufferWriter()
+		},
+	}
+}
 
 type IMessageCodec interface {
 	Encode(interface{}) ([]byte, error)
@@ -12,11 +26,16 @@ type SimpleMessageCodec struct {
 }
 
 func (s *SimpleMessageCodec) Encode(value interface{}) ([]byte, error) {
-	writer := encoder.NewBufferWriter()
+	writer := writerPool.Get().(encoder.IWriter)
 	if err := s.valueEncoder.Encode(value, writer); err != nil {
 		return nil, err
 	}
-	return writer.GetContent()
+	result, err := writer.GetContent()
+	if err != nil {
+		return nil, err
+	}
+	writerPool.Put(writer)
+	return result, nil
 }
 
 func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
