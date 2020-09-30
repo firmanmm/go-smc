@@ -70,7 +70,7 @@ As you can see. This Simple Message Codec provides higher throughput in certain 
 ## Behavioural Note
 When using `jsoniter`, the decoded `map` version will be in the `map[string]interface{}` format where all keys will be converted into `string`. It also apply to codec instantiated with `NewSimpleMessageCodecWithJsoniter`. 
 
-When using `NewSimpleMessageCodecWith` or `pure implementation`, the decoded `map` will become `map[interface{}]interface{}` and will maintain their original data type. So `int` key will remain `int` and not converted to `string` like `jsoniter`.
+When using `NewSimpleMessageCodec` or `pure` implementation, the decoded `map` will become `map[interface{}]interface{}` and will maintain their original data type. So `int` key will remain `int` and not converted to `string` like `jsoniter`.
 
 ## Todo
 - Improve Map performance (Need to be better than jsoniter)
