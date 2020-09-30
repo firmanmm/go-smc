@@ -7,8 +7,8 @@ import (
 )
 
 type IValueEncoderUnit interface {
-	Encode(interface{}) ([]byte, error)
-	Decode([]byte) (interface{}, error)
+	Encode(interface{}, IWriter) error
+	Decode(IReader) (interface{}, error)
 }
 
 type ValueEncoderType int
@@ -30,7 +30,7 @@ type ValueEncoder struct {
 	encoders map[ValueEncoderType]IValueEncoderUnit
 }
 
-func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
+func (s *ValueEncoder) Encode(data interface{}, writer IWriter) error {
 	encoderUsed := ValueEncoderType(0)
 	switch data.(type) {
 	case int8:
@@ -80,46 +80,39 @@ func (s *ValueEncoder) Encode(data interface{}) ([]byte, error) {
 		default:
 			_, ok := s.encoders[GeneralValueEncoder]
 			if !ok {
-				return nil, errors.New("Unsupported type, try to register fallback encoder")
+				return errors.New("Unsupported type, try to register fallback encoder")
 			}
 			encoderUsed = GeneralValueEncoder
 		}
 
 	}
-	return s.encode(encoderUsed, data)
+	return s.encode(encoderUsed, data, writer)
 }
 
-func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}) ([]byte, error) {
+func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}, writer IWriter) error {
 	dataEncoder, ok := v.encoders[dataType]
 	if !ok {
-		return nil, fmt.Errorf("Data Type encoder not registered for data %v", data)
+		return fmt.Errorf("Data Type encoder not registered for data %v", data)
 	}
-	result, err := dataEncoder.Encode(data)
-	if err != nil {
-		return nil, err
+	if err := writer.WriteByte(byte(dataType)); err != nil {
+		return err
 	}
-	sizeLength, err := v.encoders[UintValueEncoder].Encode(uint(len(result)))
-	if err != nil {
-		return nil, err
+	if err := dataEncoder.Encode(data, writer); err != nil {
+		return err
 	}
-	dataPack := make([]byte, 2, 2+len(sizeLength)+len(result))
-	dataPack[0] = byte(dataType)
-	dataPack[1] = byte(len(sizeLength))
-	dataPack = append(dataPack, sizeLength...)
-	dataPack = append(dataPack, result...)
-	return dataPack, nil
+	return nil
 }
 
-func (v *ValueEncoder) Decode(data []byte) (interface{}, error) {
-	decoderUsed := ValueEncoderType(data[0])
-	sizeLength := uint(data[1])
-	endSizeIdx := 2 + sizeLength
-	dataLength, err := v.encoders[UintValueEncoder].Decode(data[2:endSizeIdx])
+func (v *ValueEncoder) Decode(reader IReader) (interface{}, error) {
+	decoderType, err := reader.ReadByte()
 	if err != nil {
 		return nil, err
 	}
-	decoded, err := v.encoders[decoderUsed].Decode(data[endSizeIdx : endSizeIdx+dataLength.(uint)])
-	return decoded, err
+	decoder, ok := v.encoders[ValueEncoderType(decoderType)]
+	if !ok {
+		return nil, fmt.Errorf("Decoder Not Found for data type %d", decoderType)
+	}
+	return decoder.Decode(reader)
 }
 
 func (v *ValueEncoder) SetEncoder(dataType ValueEncoderType, encoder IValueEncoderUnit) {

@@ -8,40 +8,26 @@ type FloatEncoder struct {
 	intEncoder *IntEncoder
 }
 
-func (f *FloatEncoder) Encode(data interface{}) ([]byte, error) {
+func (f *FloatEncoder) Encode(data interface{}, writer IWriter) error {
 	floatData := data.(float64)
 	headPart, fractionPart := math.Modf(floatData) // Remove fraction
 	intHeadPart := int(headPart)
 	intFracPart := int((math.MaxInt64) * fractionPart) // Convert to Int part so it can be encoded by IntEncoder
-	headByte, err := f.intEncoder.Encode(intHeadPart)
-	if err != nil {
-		return nil, err
+	if err := f.intEncoder.Encode(intHeadPart, writer); err != nil {
+		return err
 	}
-	fracByte, err := f.intEncoder.Encode(intFracPart)
-	if err != nil {
-		return nil, err
+	if err := f.intEncoder.Encode(intFracPart, writer); err != nil {
+		return err
 	}
-	return f.merge(headByte, fracByte)
+	return nil
 }
 
-func (f *FloatEncoder) merge(headPart, fracPart []byte) ([]byte, error) {
-	results := make([]byte, 0, 1+len(headPart))
-	results = append(results, byte(len(headPart)))
-	results = append(results, headPart...)
-	results = append(results, fracPart...)
-	return results, nil
-}
-
-func (f *FloatEncoder) Decode(data []byte) (interface{}, error) {
-	headByte, fracByte, err := f.split(data)
+func (f *FloatEncoder) Decode(reader IReader) (interface{}, error) {
+	head, err := f.intEncoder.Decode(reader)
 	if err != nil {
 		return nil, err
 	}
-	head, err := f.intEncoder.Decode(headByte)
-	if err != nil {
-		return nil, err
-	}
-	frac, err := f.intEncoder.Decode(fracByte)
+	frac, err := f.intEncoder.Decode(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -50,13 +36,6 @@ func (f *FloatEncoder) Decode(data []byte) (interface{}, error) {
 	fracPart := float64(frac.(int)) / (math.MaxInt64)
 	result := headPart + fracPart
 	return result, nil
-}
-
-func (f *FloatEncoder) split(data []byte) ([]byte, []byte, error) {
-	headCount := int(data[0])
-	head := data[1 : headCount+1]
-	frac := data[1+headCount:]
-	return head, frac, nil
 }
 
 func NewFloatEncoder() *FloatEncoder {

@@ -3,38 +3,57 @@ package encoder
 type IntEncoder struct {
 }
 
-const _INT_ENCODER_MAX_ARRAY_LIMIT = 9
+const _INT_ENCODER_MAX_ARRAY_LIMIT = 8
 
-func (i *IntEncoder) Encode(data interface{}) ([]byte, error) {
+func (i *IntEncoder) Encode(raw interface{}, writer IWriter) error {
 	byteArray := make([]byte, _INT_ENCODER_MAX_ARRAY_LIMIT)
-	intData := data.(int)
-	var unsignedData uint
-	if intData >= 0 {
-		unsignedData = uint(intData)
-	} else {
-		unsignedData = uint(-intData)
-		byteArray[_INT_ENCODER_MAX_ARRAY_LIMIT-1] = 1
+
+	data := raw.(int)
+	spaceUsed := 0
+	isPositive := data > 0
+	if isPositive {
+		data = -data
 	}
-	spaceUsed := 1
-	for i := _INT_ENCODER_MAX_ARRAY_LIMIT - 2; unsignedData > 0; i-- {
-		byteArray[i] = byte(unsignedData % 256)
-		unsignedData /= 256
+	for data < 0 {
+		byteArray[spaceUsed] = byte(-data % 256)
+		data /= 256
 		spaceUsed++
 	}
-	return byteArray[_INT_ENCODER_MAX_ARRAY_LIMIT-spaceUsed:], nil
+	length := spaceUsed
+	if isPositive {
+		length |= 128
+	}
+	if err := writer.WriteByte(byte(length)); err != nil {
+		return err
+	}
+	return writer.Write(byteArray[:spaceUsed])
 }
 
-func (i *IntEncoder) Decode(data []byte) (interface{}, error) {
-	intData := 0
+func (i *IntEncoder) Decode(reader IReader) (interface{}, error) {
+	data := 0
 	multiplier := 1
-	for i := len(data) - 2; i >= 0; i-- {
-		intData += int(data[i]) * multiplier
+	length, err := reader.ReadByte()
+	if err != nil {
+		return nil, err
+	}
+	isPositive := length&128 > 0
+	if isPositive {
+		length = length ^ 128
+	}
+
+	rawByte, err := reader.Read(int(length))
+	if err != nil {
+		return nil, err
+	}
+	for i := 0; i < len(rawByte); i++ {
+		nextByte := rawByte[i]
+		data += int(nextByte) * multiplier
 		multiplier *= 256
 	}
-	if data[len(data)-1] == 1 {
-		intData = -intData
+	if !isPositive {
+		data = -data
 	}
-	return intData, nil
+	return data, nil
 }
 
 func NewIntEncoder() *IntEncoder {

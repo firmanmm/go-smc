@@ -4,87 +4,42 @@ import "reflect"
 
 type ListEncoder struct {
 	valueEncoder *ValueEncoder
-	uintEncoder  *UintEncoder
+	intEncoder   *IntEncoder
 }
 
-func (l *ListEncoder) Encode(data interface{}) ([]byte, error) {
+func (l *ListEncoder) Encode(data interface{}, writer IWriter) error {
 	reflected := reflect.ValueOf(data)
 	reflectedLen := reflected.Len()
-	encodedList := make([][]byte, 0, reflectedLen)
+	if err := l.intEncoder.Encode(reflectedLen, writer); err != nil {
+		return err
+	}
 	for i := 0; i < reflectedLen; i++ {
-		encoded, err := l.valueEncoder.Encode(reflected.Index(i).Interface())
-		if err != nil {
-			return nil, err
+		if err := l.valueEncoder.Encode(reflected.Index(i).Interface(), writer); err != nil {
+			return err
 		}
-		encodedList = append(encodedList, encoded)
 	}
-	return l.merge(encodedList)
+	return nil
 }
 
-func (l *ListEncoder) merge(byteList [][]byte) ([]byte, error) {
-	childCount := len(byteList)
-	lengthBytes := make([][]byte, childCount)
-	lengthCounts := make([]byte, childCount)
-	payloadSize := childCount
-	for idx, val := range byteList {
-		length, err := l.uintEncoder.Encode(uint(len(val)))
-		if err != nil {
-			return nil, err
-		}
-		lengthBytes[idx] = length
-		lengthSize := len(length)
-		lengthCounts[idx] = byte(lengthSize)
-		payloadSize += len(val)
-		payloadSize += lengthSize
-	}
-	childLengthCount, err := l.uintEncoder.Encode(uint(childCount))
+func (l *ListEncoder) Decode(reader IReader) (interface{}, error) {
+	length, err := l.intEncoder.Decode(reader)
 	if err != nil {
 		return nil, err
 	}
-	childLengthCountLength := len(childLengthCount)
-	payloadSize += childLengthCountLength
-	payload := make([]byte, 1, 1+childCount+payloadSize)
-	payload[0] = byte(childLengthCountLength)
-	payload = append(payload, childLengthCount...)
-	for idx, val := range byteList {
-		payload = append(payload, lengthCounts[idx])
-		payload = append(payload, lengthBytes[idx]...)
-		payload = append(payload, val...)
-	}
-	return payload, nil
-}
-
-func (l *ListEncoder) Decode(data []byte) (interface{}, error) {
-	rawCount := int(data[0])
-	dCount, err := l.uintEncoder.Decode(data[1 : 1+rawCount])
-	if err != nil {
-		return nil, err
-	}
-	count := int(dCount.(uint))
-	result := make([]interface{}, 0, count)
-	data = data[1+rawCount:]
-	for i := 0; i < count; i++ {
-		childLength := data[0]
-		startIdx := 1 + childLength
-		dPayloadSize, err := l.uintEncoder.Decode(data[1:startIdx])
+	result := make([]interface{}, length.(int))
+	for i := 0; i < len(result); i++ {
+		res, err := l.valueEncoder.Decode(reader)
 		if err != nil {
 			return nil, err
 		}
-		payloadSize := dPayloadSize.(uint)
-		endIdx := 1 + int(childLength) + int(payloadSize)
-		dPayload, err := l.valueEncoder.Decode(data[startIdx:endIdx])
-		if err != nil {
-			return nil, err
-		}
-		result = append(result, dPayload)
-		data = data[endIdx:]
+		result[i] = res
 	}
 	return result, nil
 }
 
-func NewListEncoder(valueEncoder *ValueEncoder, uintEncoder *UintEncoder) *ListEncoder {
+func NewListEncoder(valueEncoder *ValueEncoder) *ListEncoder {
 	return &ListEncoder{
 		valueEncoder: valueEncoder,
-		uintEncoder:  uintEncoder,
+		intEncoder:   NewIntEncoder(),
 	}
 }

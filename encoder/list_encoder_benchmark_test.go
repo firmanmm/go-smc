@@ -14,7 +14,6 @@ func _GetListEncoder() *ListEncoder {
 
 	oldEncoder := NewListEncoder(
 		valueEncoder,
-		NewUintEncoder(),
 	)
 	return oldEncoder
 }
@@ -31,11 +30,18 @@ func BenchmarkListEncoder(b *testing.B) {
 	encoder := _GetListEncoder()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		encoded, err := encoder.Encode(testData)
+		writer := NewBufferWriter()
+		err := encoder.Encode(testData, writer)
 		if err != nil {
 			b.Error(err)
 		}
-		_, err = encoder.Decode(encoded)
+		content, err := writer.GetContent()
+		if err != nil {
+			b.Error(err)
+
+		}
+		reader := NewSliceReader(content)
+		_, err = encoder.Decode(reader)
 		if err != nil {
 			b.Error(err)
 		}

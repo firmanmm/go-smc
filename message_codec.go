@@ -12,11 +12,16 @@ type SimpleMessageCodec struct {
 }
 
 func (s *SimpleMessageCodec) Encode(value interface{}) ([]byte, error) {
-	return s.valueEncoder.Encode(value)
+	writer := encoder.NewBufferWriter()
+	if err := s.valueEncoder.Encode(value, writer); err != nil {
+		return nil, err
+	}
+	return writer.GetContent()
 }
 
 func (s *SimpleMessageCodec) Decode(data []byte) (interface{}, error) {
-	return s.valueEncoder.Decode(data)
+	reader := encoder.NewSliceReader(data)
+	return s.valueEncoder.Decode(reader)
 }
 
 //Creates new message codec with default encoder
@@ -32,7 +37,7 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 		},
 	)
 
-	listEncoder := encoder.NewListEncoder(valueEncoder, encoder.NewUintEncoder())
+	listEncoder := encoder.NewListEncoder(valueEncoder)
 	mapEncoder := encoder.NewMapEncoder(valueEncoder)
 
 	valueEncoder.SetEncoder(encoder.ListValueEncoder, listEncoder)

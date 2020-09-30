@@ -2,8 +2,9 @@ package encoder
 
 import (
 	"math"
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestUintEncoder(t *testing.T) {
@@ -38,20 +39,15 @@ func TestUintEncoder(t *testing.T) {
 
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := encoder.Encode(val.Value)
-			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
-			}
-			if reflect.DeepEqual(encoded, val.Value) {
-				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)
-			}
-			decoded, err := encoder.Decode(encoded)
-			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
-			}
-			if !reflect.DeepEqual(val.Value, decoded) {
-				t.Errorf("Expected %v but got %v", val.Value, decoded)
-			}
+			writer := NewBufferWriter()
+			err := encoder.Encode(val.Value, writer)
+			assert.Nil(t, err)
+			content, err := writer.GetContent()
+			assert.Nil(t, err)
+			reader := NewSliceReader(content)
+			decoded, err := encoder.Decode(reader)
+			assert.Nil(t, err)
+			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
 }

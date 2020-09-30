@@ -1,8 +1,9 @@
 package encoder
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestListEncoder(t *testing.T) {
@@ -25,20 +26,6 @@ func TestListEncoder(t *testing.T) {
 			},
 			false,
 		},
-
-		/// Can't use reflect deep equal because returned type is now interface{}
-		// {
-		// 	"Another List",
-		// 	[]interface{}{
-		// 		[]int{
-		// 			1, 2, 3, 4, 5, 6, 8,
-		// 		},
-		// 		[]uint{
-		// 			14, 2, 3, 4, 5, 6, 111111111118,
-		// 		},
-		// 	},
-		// 	false,
-		// },
 	}
 
 	valueEncoder := NewValueEncoder(
@@ -51,26 +38,20 @@ func TestListEncoder(t *testing.T) {
 
 	encoder := NewListEncoder(
 		valueEncoder,
-		NewUintEncoder(),
 	)
 	valueEncoder.SetEncoder(ListValueEncoder, encoder)
 
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {
-			encoded, err := encoder.Encode(val.Value)
-			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
-			}
-			if reflect.DeepEqual(encoded, val.Value) {
-				t.Errorf("Expected data to be transformed but nothing happens, %v", encoded)
-			}
-			decoded, err := encoder.Decode(encoded)
-			if err != nil != val.HasError {
-				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
-			}
-			if !reflect.DeepEqual(val.Value, decoded) {
-				t.Errorf("Expected %v but got %v", val.Value, decoded)
-			}
+			writer := NewBufferWriter()
+			err := encoder.Encode(val.Value, writer)
+			assert.Nil(t, err)
+			content, err := writer.GetContent()
+			assert.Nil(t, err)
+			reader := NewSliceReader(content)
+			decoded, err := encoder.Decode(reader)
+			assert.Nil(t, err)
+			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
 }

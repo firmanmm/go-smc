@@ -5,23 +5,35 @@ type UintEncoder struct {
 
 const _UINT_ENCODER_MAX_ARRAY_LIMIT = 8
 
-func (i *UintEncoder) Encode(data interface{}) ([]byte, error) {
+func (i *UintEncoder) Encode(data interface{}, writer IWriter) error {
 	byteArray := make([]byte, _UINT_ENCODER_MAX_ARRAY_LIMIT)
 	unsignedData := data.(uint)
 	spaceUsed := 0
-	for i := _UINT_ENCODER_MAX_ARRAY_LIMIT - 1; unsignedData > 0; i-- {
-		byteArray[i] = byte(unsignedData % 256)
+	for unsignedData > 0 {
+		byteArray[spaceUsed] = byte(unsignedData % 256)
 		unsignedData /= 256
 		spaceUsed++
 	}
-	return byteArray[_UINT_ENCODER_MAX_ARRAY_LIMIT-spaceUsed:], nil
+	if err := writer.WriteByte(byte(spaceUsed)); err != nil {
+		return err
+	}
+	return writer.Write(byteArray[:spaceUsed])
 }
 
-func (i *UintEncoder) Decode(data []byte) (interface{}, error) {
+func (i *UintEncoder) Decode(reader IReader) (interface{}, error) {
 	uIntData := uint(0)
 	multiplier := uint(1)
-	for i := len(data) - 1; i >= 0; i-- {
-		uIntData += uint(data[i]) * multiplier
+	length, err := reader.ReadByte()
+	if err != nil {
+		return nil, err
+	}
+	rawByte, err := reader.Read(int(length))
+	if err != nil {
+		return nil, err
+	}
+	for i := 0; i < len(rawByte); i++ {
+		nextByte := rawByte[i]
+		uIntData += uint(nextByte) * multiplier
 		multiplier *= 256
 	}
 	return uIntData, nil

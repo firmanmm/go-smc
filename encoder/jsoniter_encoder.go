@@ -5,14 +5,27 @@ import (
 )
 
 type JsoniterEncoder struct {
+	intEncoder *IntEncoder
 }
 
-func (j *JsoniterEncoder) Encode(data interface{}) ([]byte, error) {
-	return jsoniter.Marshal(data)
+func (j *JsoniterEncoder) Encode(data interface{}, writer IWriter) error {
+	marshalled, err := jsoniter.Marshal(data)
+	if err != nil {
+		return err
+	}
+	if err := j.intEncoder.Encode(len(marshalled), writer); err != nil {
+		return err
+	}
+	return writer.Write(marshalled)
 }
 
-func (j *JsoniterEncoder) Decode(data []byte) (interface{}, error) {
+func (j *JsoniterEncoder) Decode(reader IReader) (interface{}, error) {
+	length, err := j.intEncoder.Decode(reader)
+	if err != nil {
+		return nil, err
+	}
 	var result interface{}
+	data, err := reader.Read(length.(int))
 	if err := jsoniter.Unmarshal(data, &result); err != nil {
 		return nil, err
 	}
@@ -20,5 +33,7 @@ func (j *JsoniterEncoder) Decode(data []byte) (interface{}, error) {
 }
 
 func NewJsoniterEncoder() *JsoniterEncoder {
-	return &JsoniterEncoder{}
+	return &JsoniterEncoder{
+		intEncoder: NewIntEncoder(),
+	}
 }
