@@ -1,0 +1,25 @@
+switch data.(type) {
+{{range $srcType := .Type}}
+{{range $dstType := $.Type}}
+case map[{{index $srcType 0}}]{{index $dstType 0}}:
+    return l.Encode{{index $srcType 1}}{{index $dstType 1}}(data.(map[{{index $srcType 0}}]{{index $dstType 0}}), writer){{end}}{{end}}
+default:
+    break
+
+{{range $srcType := .Type}}
+{{range $dstType := $.Type}}
+func (l *MapEncoder) Encode{{index $srcType 1}}{{index $dstType 1}}(data map[{{index $srcType 0}}]{{index $dstType 0}}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+{{end}}{{end}}

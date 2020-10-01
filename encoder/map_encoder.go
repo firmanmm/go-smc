@@ -3,11 +3,20 @@ package encoder
 import "reflect"
 
 type MapEncoder struct {
-	intEncoder   *IntEncoder
-	valueEncoder *ValueEncoder
+	speedUpCommon bool
+	intEncoder    *IntEncoder
+	valueEncoder  *ValueEncoder
 }
 
 func (l *MapEncoder) Encode(data interface{}, writer IWriter) error {
+	if l.speedUpCommon {
+		switch data.(type) {
+		case map[string]interface{}:
+			return l.EncodeStringInterface(data.(map[string]interface{}), writer)
+		case map[interface{}]interface{}:
+			return l.EncodeInterfaceInterface(data.(map[interface{}]interface{}), writer)
+		}
+	}
 	reflected := reflect.ValueOf(data)
 	pairData := reflected.MapRange()
 	length := reflected.Len()
@@ -21,6 +30,36 @@ func (l *MapEncoder) Encode(data interface{}, writer IWriter) error {
 			return err
 		}
 		if err := l.valueEncoder.Encode(value.Interface(), writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInterface(data map[string]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInterface(data map[interface{}]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
 			return err
 		}
 	}
@@ -54,5 +93,13 @@ func NewMapEncoder(valueEncoder *ValueEncoder) *MapEncoder {
 	return &MapEncoder{
 		valueEncoder: valueEncoder,
 		intEncoder:   NewIntEncoder(),
+	}
+}
+
+func NewMapCommonEncoder(valueEncoder *ValueEncoder) *MapEncoder {
+	return &MapEncoder{
+		speedUpCommon: true,
+		valueEncoder:  valueEncoder,
+		intEncoder:    NewIntEncoder(),
 	}
 }

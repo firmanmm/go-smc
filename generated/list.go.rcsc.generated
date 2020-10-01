@@ -1,0 +1,222 @@
+//Start of auto generated switch for List Encoder
+switch data.(type) {
+
+case []int:
+    return l.EncodeInt(data.([]int), writer)
+case []int8:
+    return l.EncodeInt8(data.([]int8), writer)
+case []int16:
+    return l.EncodeInt16(data.([]int16), writer)
+case []int32:
+    return l.EncodeInt32(data.([]int32), writer)
+case []int64:
+    return l.EncodeInt64(data.([]int64), writer)
+case []uint:
+    return l.EncodeUint(data.([]uint), writer)
+case []uint8:
+    return l.EncodeUint8(data.([]uint8), writer)
+case []uint16:
+    return l.EncodeUint16(data.([]uint16), writer)
+case []uint32:
+    return l.EncodeUint32(data.([]uint32), writer)
+case []uint64:
+    return l.EncodeUint64(data.([]uint64), writer)
+case []bool:
+    return l.EncodeBool(data.([]bool), writer)
+case []string:
+    return l.EncodeString(data.([]string), writer)
+case []float32:
+    return l.EncodeFloat32(data.([]float32), writer)
+case []float64:
+    return l.EncodeFloat64(data.([]float64), writer)
+case []interface{}:
+    return l.EncodeInterface(data.([]interface{}), writer)
+default:
+    break
+}
+//End of auto generated switch for List Encoder
+
+
+//Start of auto generated function for List Encoder
+
+func (l *ListEncoder) EncodeInt(data []int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeInt8(data []int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeInt16(data []int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeInt32(data []int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeInt64(data []int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeUint(data []uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeUint8(data []uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeUint16(data []uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeUint32(data []uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeUint64(data []uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeBool(data []bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeString(data []string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeFloat32(data []float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeFloat64(data []float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *ListEncoder) EncodeInterface(data []interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//End of auto generated function for List Encoder

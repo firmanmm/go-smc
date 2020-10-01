@@ -57,8 +57,8 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 		},
 	)
 
-	listEncoder := encoder.NewListEncoder(valueEncoder)
-	mapEncoder := encoder.NewMapEncoder(valueEncoder)
+	listEncoder := encoder.NewListInterfaceEncoder(valueEncoder)
+	mapEncoder := encoder.NewMapCommonEncoder(valueEncoder)
 	structEncoder := encoder.NewStructEncoder(valueEncoder)
 
 	valueEncoder.SetEncoder(encoder.ListValueEncoder, listEncoder)

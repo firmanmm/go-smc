@@ -1,0 +1,3860 @@
+switch data.(type) {
+
+
+case map[int]int:
+    return l.EncodeIntInt(data.(map[int]int), writer)
+case map[int]int8:
+    return l.EncodeIntInt8(data.(map[int]int8), writer)
+case map[int]int16:
+    return l.EncodeIntInt16(data.(map[int]int16), writer)
+case map[int]int32:
+    return l.EncodeIntInt32(data.(map[int]int32), writer)
+case map[int]int64:
+    return l.EncodeIntInt64(data.(map[int]int64), writer)
+case map[int]uint:
+    return l.EncodeIntUint(data.(map[int]uint), writer)
+case map[int]uint8:
+    return l.EncodeIntUint8(data.(map[int]uint8), writer)
+case map[int]uint16:
+    return l.EncodeIntUint16(data.(map[int]uint16), writer)
+case map[int]uint32:
+    return l.EncodeIntUint32(data.(map[int]uint32), writer)
+case map[int]uint64:
+    return l.EncodeIntUint64(data.(map[int]uint64), writer)
+case map[int]bool:
+    return l.EncodeIntBool(data.(map[int]bool), writer)
+case map[int]string:
+    return l.EncodeIntString(data.(map[int]string), writer)
+case map[int]float32:
+    return l.EncodeIntFloat32(data.(map[int]float32), writer)
+case map[int]float64:
+    return l.EncodeIntFloat64(data.(map[int]float64), writer)
+case map[int]interface{}:
+    return l.EncodeIntInterface(data.(map[int]interface{}), writer)
+
+case map[int8]int:
+    return l.EncodeInt8Int(data.(map[int8]int), writer)
+case map[int8]int8:
+    return l.EncodeInt8Int8(data.(map[int8]int8), writer)
+case map[int8]int16:
+    return l.EncodeInt8Int16(data.(map[int8]int16), writer)
+case map[int8]int32:
+    return l.EncodeInt8Int32(data.(map[int8]int32), writer)
+case map[int8]int64:
+    return l.EncodeInt8Int64(data.(map[int8]int64), writer)
+case map[int8]uint:
+    return l.EncodeInt8Uint(data.(map[int8]uint), writer)
+case map[int8]uint8:
+    return l.EncodeInt8Uint8(data.(map[int8]uint8), writer)
+case map[int8]uint16:
+    return l.EncodeInt8Uint16(data.(map[int8]uint16), writer)
+case map[int8]uint32:
+    return l.EncodeInt8Uint32(data.(map[int8]uint32), writer)
+case map[int8]uint64:
+    return l.EncodeInt8Uint64(data.(map[int8]uint64), writer)
+case map[int8]bool:
+    return l.EncodeInt8Bool(data.(map[int8]bool), writer)
+case map[int8]string:
+    return l.EncodeInt8String(data.(map[int8]string), writer)
+case map[int8]float32:
+    return l.EncodeInt8Float32(data.(map[int8]float32), writer)
+case map[int8]float64:
+    return l.EncodeInt8Float64(data.(map[int8]float64), writer)
+case map[int8]interface{}:
+    return l.EncodeInt8Interface(data.(map[int8]interface{}), writer)
+
+case map[int16]int:
+    return l.EncodeInt16Int(data.(map[int16]int), writer)
+case map[int16]int8:
+    return l.EncodeInt16Int8(data.(map[int16]int8), writer)
+case map[int16]int16:
+    return l.EncodeInt16Int16(data.(map[int16]int16), writer)
+case map[int16]int32:
+    return l.EncodeInt16Int32(data.(map[int16]int32), writer)
+case map[int16]int64:
+    return l.EncodeInt16Int64(data.(map[int16]int64), writer)
+case map[int16]uint:
+    return l.EncodeInt16Uint(data.(map[int16]uint), writer)
+case map[int16]uint8:
+    return l.EncodeInt16Uint8(data.(map[int16]uint8), writer)
+case map[int16]uint16:
+    return l.EncodeInt16Uint16(data.(map[int16]uint16), writer)
+case map[int16]uint32:
+    return l.EncodeInt16Uint32(data.(map[int16]uint32), writer)
+case map[int16]uint64:
+    return l.EncodeInt16Uint64(data.(map[int16]uint64), writer)
+case map[int16]bool:
+    return l.EncodeInt16Bool(data.(map[int16]bool), writer)
+case map[int16]string:
+    return l.EncodeInt16String(data.(map[int16]string), writer)
+case map[int16]float32:
+    return l.EncodeInt16Float32(data.(map[int16]float32), writer)
+case map[int16]float64:
+    return l.EncodeInt16Float64(data.(map[int16]float64), writer)
+case map[int16]interface{}:
+    return l.EncodeInt16Interface(data.(map[int16]interface{}), writer)
+
+case map[int32]int:
+    return l.EncodeInt32Int(data.(map[int32]int), writer)
+case map[int32]int8:
+    return l.EncodeInt32Int8(data.(map[int32]int8), writer)
+case map[int32]int16:
+    return l.EncodeInt32Int16(data.(map[int32]int16), writer)
+case map[int32]int32:
+    return l.EncodeInt32Int32(data.(map[int32]int32), writer)
+case map[int32]int64:
+    return l.EncodeInt32Int64(data.(map[int32]int64), writer)
+case map[int32]uint:
+    return l.EncodeInt32Uint(data.(map[int32]uint), writer)
+case map[int32]uint8:
+    return l.EncodeInt32Uint8(data.(map[int32]uint8), writer)
+case map[int32]uint16:
+    return l.EncodeInt32Uint16(data.(map[int32]uint16), writer)
+case map[int32]uint32:
+    return l.EncodeInt32Uint32(data.(map[int32]uint32), writer)
+case map[int32]uint64:
+    return l.EncodeInt32Uint64(data.(map[int32]uint64), writer)
+case map[int32]bool:
+    return l.EncodeInt32Bool(data.(map[int32]bool), writer)
+case map[int32]string:
+    return l.EncodeInt32String(data.(map[int32]string), writer)
+case map[int32]float32:
+    return l.EncodeInt32Float32(data.(map[int32]float32), writer)
+case map[int32]float64:
+    return l.EncodeInt32Float64(data.(map[int32]float64), writer)
+case map[int32]interface{}:
+    return l.EncodeInt32Interface(data.(map[int32]interface{}), writer)
+
+case map[int64]int:
+    return l.EncodeInt64Int(data.(map[int64]int), writer)
+case map[int64]int8:
+    return l.EncodeInt64Int8(data.(map[int64]int8), writer)
+case map[int64]int16:
+    return l.EncodeInt64Int16(data.(map[int64]int16), writer)
+case map[int64]int32:
+    return l.EncodeInt64Int32(data.(map[int64]int32), writer)
+case map[int64]int64:
+    return l.EncodeInt64Int64(data.(map[int64]int64), writer)
+case map[int64]uint:
+    return l.EncodeInt64Uint(data.(map[int64]uint), writer)
+case map[int64]uint8:
+    return l.EncodeInt64Uint8(data.(map[int64]uint8), writer)
+case map[int64]uint16:
+    return l.EncodeInt64Uint16(data.(map[int64]uint16), writer)
+case map[int64]uint32:
+    return l.EncodeInt64Uint32(data.(map[int64]uint32), writer)
+case map[int64]uint64:
+    return l.EncodeInt64Uint64(data.(map[int64]uint64), writer)
+case map[int64]bool:
+    return l.EncodeInt64Bool(data.(map[int64]bool), writer)
+case map[int64]string:
+    return l.EncodeInt64String(data.(map[int64]string), writer)
+case map[int64]float32:
+    return l.EncodeInt64Float32(data.(map[int64]float32), writer)
+case map[int64]float64:
+    return l.EncodeInt64Float64(data.(map[int64]float64), writer)
+case map[int64]interface{}:
+    return l.EncodeInt64Interface(data.(map[int64]interface{}), writer)
+
+case map[uint]int:
+    return l.EncodeUintInt(data.(map[uint]int), writer)
+case map[uint]int8:
+    return l.EncodeUintInt8(data.(map[uint]int8), writer)
+case map[uint]int16:
+    return l.EncodeUintInt16(data.(map[uint]int16), writer)
+case map[uint]int32:
+    return l.EncodeUintInt32(data.(map[uint]int32), writer)
+case map[uint]int64:
+    return l.EncodeUintInt64(data.(map[uint]int64), writer)
+case map[uint]uint:
+    return l.EncodeUintUint(data.(map[uint]uint), writer)
+case map[uint]uint8:
+    return l.EncodeUintUint8(data.(map[uint]uint8), writer)
+case map[uint]uint16:
+    return l.EncodeUintUint16(data.(map[uint]uint16), writer)
+case map[uint]uint32:
+    return l.EncodeUintUint32(data.(map[uint]uint32), writer)
+case map[uint]uint64:
+    return l.EncodeUintUint64(data.(map[uint]uint64), writer)
+case map[uint]bool:
+    return l.EncodeUintBool(data.(map[uint]bool), writer)
+case map[uint]string:
+    return l.EncodeUintString(data.(map[uint]string), writer)
+case map[uint]float32:
+    return l.EncodeUintFloat32(data.(map[uint]float32), writer)
+case map[uint]float64:
+    return l.EncodeUintFloat64(data.(map[uint]float64), writer)
+case map[uint]interface{}:
+    return l.EncodeUintInterface(data.(map[uint]interface{}), writer)
+
+case map[uint8]int:
+    return l.EncodeUint8Int(data.(map[uint8]int), writer)
+case map[uint8]int8:
+    return l.EncodeUint8Int8(data.(map[uint8]int8), writer)
+case map[uint8]int16:
+    return l.EncodeUint8Int16(data.(map[uint8]int16), writer)
+case map[uint8]int32:
+    return l.EncodeUint8Int32(data.(map[uint8]int32), writer)
+case map[uint8]int64:
+    return l.EncodeUint8Int64(data.(map[uint8]int64), writer)
+case map[uint8]uint:
+    return l.EncodeUint8Uint(data.(map[uint8]uint), writer)
+case map[uint8]uint8:
+    return l.EncodeUint8Uint8(data.(map[uint8]uint8), writer)
+case map[uint8]uint16:
+    return l.EncodeUint8Uint16(data.(map[uint8]uint16), writer)
+case map[uint8]uint32:
+    return l.EncodeUint8Uint32(data.(map[uint8]uint32), writer)
+case map[uint8]uint64:
+    return l.EncodeUint8Uint64(data.(map[uint8]uint64), writer)
+case map[uint8]bool:
+    return l.EncodeUint8Bool(data.(map[uint8]bool), writer)
+case map[uint8]string:
+    return l.EncodeUint8String(data.(map[uint8]string), writer)
+case map[uint8]float32:
+    return l.EncodeUint8Float32(data.(map[uint8]float32), writer)
+case map[uint8]float64:
+    return l.EncodeUint8Float64(data.(map[uint8]float64), writer)
+case map[uint8]interface{}:
+    return l.EncodeUint8Interface(data.(map[uint8]interface{}), writer)
+
+case map[uint16]int:
+    return l.EncodeUint16Int(data.(map[uint16]int), writer)
+case map[uint16]int8:
+    return l.EncodeUint16Int8(data.(map[uint16]int8), writer)
+case map[uint16]int16:
+    return l.EncodeUint16Int16(data.(map[uint16]int16), writer)
+case map[uint16]int32:
+    return l.EncodeUint16Int32(data.(map[uint16]int32), writer)
+case map[uint16]int64:
+    return l.EncodeUint16Int64(data.(map[uint16]int64), writer)
+case map[uint16]uint:
+    return l.EncodeUint16Uint(data.(map[uint16]uint), writer)
+case map[uint16]uint8:
+    return l.EncodeUint16Uint8(data.(map[uint16]uint8), writer)
+case map[uint16]uint16:
+    return l.EncodeUint16Uint16(data.(map[uint16]uint16), writer)
+case map[uint16]uint32:
+    return l.EncodeUint16Uint32(data.(map[uint16]uint32), writer)
+case map[uint16]uint64:
+    return l.EncodeUint16Uint64(data.(map[uint16]uint64), writer)
+case map[uint16]bool:
+    return l.EncodeUint16Bool(data.(map[uint16]bool), writer)
+case map[uint16]string:
+    return l.EncodeUint16String(data.(map[uint16]string), writer)
+case map[uint16]float32:
+    return l.EncodeUint16Float32(data.(map[uint16]float32), writer)
+case map[uint16]float64:
+    return l.EncodeUint16Float64(data.(map[uint16]float64), writer)
+case map[uint16]interface{}:
+    return l.EncodeUint16Interface(data.(map[uint16]interface{}), writer)
+
+case map[uint32]int:
+    return l.EncodeUint32Int(data.(map[uint32]int), writer)
+case map[uint32]int8:
+    return l.EncodeUint32Int8(data.(map[uint32]int8), writer)
+case map[uint32]int16:
+    return l.EncodeUint32Int16(data.(map[uint32]int16), writer)
+case map[uint32]int32:
+    return l.EncodeUint32Int32(data.(map[uint32]int32), writer)
+case map[uint32]int64:
+    return l.EncodeUint32Int64(data.(map[uint32]int64), writer)
+case map[uint32]uint:
+    return l.EncodeUint32Uint(data.(map[uint32]uint), writer)
+case map[uint32]uint8:
+    return l.EncodeUint32Uint8(data.(map[uint32]uint8), writer)
+case map[uint32]uint16:
+    return l.EncodeUint32Uint16(data.(map[uint32]uint16), writer)
+case map[uint32]uint32:
+    return l.EncodeUint32Uint32(data.(map[uint32]uint32), writer)
+case map[uint32]uint64:
+    return l.EncodeUint32Uint64(data.(map[uint32]uint64), writer)
+case map[uint32]bool:
+    return l.EncodeUint32Bool(data.(map[uint32]bool), writer)
+case map[uint32]string:
+    return l.EncodeUint32String(data.(map[uint32]string), writer)
+case map[uint32]float32:
+    return l.EncodeUint32Float32(data.(map[uint32]float32), writer)
+case map[uint32]float64:
+    return l.EncodeUint32Float64(data.(map[uint32]float64), writer)
+case map[uint32]interface{}:
+    return l.EncodeUint32Interface(data.(map[uint32]interface{}), writer)
+
+case map[uint64]int:
+    return l.EncodeUint64Int(data.(map[uint64]int), writer)
+case map[uint64]int8:
+    return l.EncodeUint64Int8(data.(map[uint64]int8), writer)
+case map[uint64]int16:
+    return l.EncodeUint64Int16(data.(map[uint64]int16), writer)
+case map[uint64]int32:
+    return l.EncodeUint64Int32(data.(map[uint64]int32), writer)
+case map[uint64]int64:
+    return l.EncodeUint64Int64(data.(map[uint64]int64), writer)
+case map[uint64]uint:
+    return l.EncodeUint64Uint(data.(map[uint64]uint), writer)
+case map[uint64]uint8:
+    return l.EncodeUint64Uint8(data.(map[uint64]uint8), writer)
+case map[uint64]uint16:
+    return l.EncodeUint64Uint16(data.(map[uint64]uint16), writer)
+case map[uint64]uint32:
+    return l.EncodeUint64Uint32(data.(map[uint64]uint32), writer)
+case map[uint64]uint64:
+    return l.EncodeUint64Uint64(data.(map[uint64]uint64), writer)
+case map[uint64]bool:
+    return l.EncodeUint64Bool(data.(map[uint64]bool), writer)
+case map[uint64]string:
+    return l.EncodeUint64String(data.(map[uint64]string), writer)
+case map[uint64]float32:
+    return l.EncodeUint64Float32(data.(map[uint64]float32), writer)
+case map[uint64]float64:
+    return l.EncodeUint64Float64(data.(map[uint64]float64), writer)
+case map[uint64]interface{}:
+    return l.EncodeUint64Interface(data.(map[uint64]interface{}), writer)
+
+case map[bool]int:
+    return l.EncodeBoolInt(data.(map[bool]int), writer)
+case map[bool]int8:
+    return l.EncodeBoolInt8(data.(map[bool]int8), writer)
+case map[bool]int16:
+    return l.EncodeBoolInt16(data.(map[bool]int16), writer)
+case map[bool]int32:
+    return l.EncodeBoolInt32(data.(map[bool]int32), writer)
+case map[bool]int64:
+    return l.EncodeBoolInt64(data.(map[bool]int64), writer)
+case map[bool]uint:
+    return l.EncodeBoolUint(data.(map[bool]uint), writer)
+case map[bool]uint8:
+    return l.EncodeBoolUint8(data.(map[bool]uint8), writer)
+case map[bool]uint16:
+    return l.EncodeBoolUint16(data.(map[bool]uint16), writer)
+case map[bool]uint32:
+    return l.EncodeBoolUint32(data.(map[bool]uint32), writer)
+case map[bool]uint64:
+    return l.EncodeBoolUint64(data.(map[bool]uint64), writer)
+case map[bool]bool:
+    return l.EncodeBoolBool(data.(map[bool]bool), writer)
+case map[bool]string:
+    return l.EncodeBoolString(data.(map[bool]string), writer)
+case map[bool]float32:
+    return l.EncodeBoolFloat32(data.(map[bool]float32), writer)
+case map[bool]float64:
+    return l.EncodeBoolFloat64(data.(map[bool]float64), writer)
+case map[bool]interface{}:
+    return l.EncodeBoolInterface(data.(map[bool]interface{}), writer)
+
+case map[string]int:
+    return l.EncodeStringInt(data.(map[string]int), writer)
+case map[string]int8:
+    return l.EncodeStringInt8(data.(map[string]int8), writer)
+case map[string]int16:
+    return l.EncodeStringInt16(data.(map[string]int16), writer)
+case map[string]int32:
+    return l.EncodeStringInt32(data.(map[string]int32), writer)
+case map[string]int64:
+    return l.EncodeStringInt64(data.(map[string]int64), writer)
+case map[string]uint:
+    return l.EncodeStringUint(data.(map[string]uint), writer)
+case map[string]uint8:
+    return l.EncodeStringUint8(data.(map[string]uint8), writer)
+case map[string]uint16:
+    return l.EncodeStringUint16(data.(map[string]uint16), writer)
+case map[string]uint32:
+    return l.EncodeStringUint32(data.(map[string]uint32), writer)
+case map[string]uint64:
+    return l.EncodeStringUint64(data.(map[string]uint64), writer)
+case map[string]bool:
+    return l.EncodeStringBool(data.(map[string]bool), writer)
+case map[string]string:
+    return l.EncodeStringString(data.(map[string]string), writer)
+case map[string]float32:
+    return l.EncodeStringFloat32(data.(map[string]float32), writer)
+case map[string]float64:
+    return l.EncodeStringFloat64(data.(map[string]float64), writer)
+case map[string]interface{}:
+    return l.EncodeStringInterface(data.(map[string]interface{}), writer)
+
+case map[float32]int:
+    return l.EncodeFloat32Int(data.(map[float32]int), writer)
+case map[float32]int8:
+    return l.EncodeFloat32Int8(data.(map[float32]int8), writer)
+case map[float32]int16:
+    return l.EncodeFloat32Int16(data.(map[float32]int16), writer)
+case map[float32]int32:
+    return l.EncodeFloat32Int32(data.(map[float32]int32), writer)
+case map[float32]int64:
+    return l.EncodeFloat32Int64(data.(map[float32]int64), writer)
+case map[float32]uint:
+    return l.EncodeFloat32Uint(data.(map[float32]uint), writer)
+case map[float32]uint8:
+    return l.EncodeFloat32Uint8(data.(map[float32]uint8), writer)
+case map[float32]uint16:
+    return l.EncodeFloat32Uint16(data.(map[float32]uint16), writer)
+case map[float32]uint32:
+    return l.EncodeFloat32Uint32(data.(map[float32]uint32), writer)
+case map[float32]uint64:
+    return l.EncodeFloat32Uint64(data.(map[float32]uint64), writer)
+case map[float32]bool:
+    return l.EncodeFloat32Bool(data.(map[float32]bool), writer)
+case map[float32]string:
+    return l.EncodeFloat32String(data.(map[float32]string), writer)
+case map[float32]float32:
+    return l.EncodeFloat32Float32(data.(map[float32]float32), writer)
+case map[float32]float64:
+    return l.EncodeFloat32Float64(data.(map[float32]float64), writer)
+case map[float32]interface{}:
+    return l.EncodeFloat32Interface(data.(map[float32]interface{}), writer)
+
+case map[float64]int:
+    return l.EncodeFloat64Int(data.(map[float64]int), writer)
+case map[float64]int8:
+    return l.EncodeFloat64Int8(data.(map[float64]int8), writer)
+case map[float64]int16:
+    return l.EncodeFloat64Int16(data.(map[float64]int16), writer)
+case map[float64]int32:
+    return l.EncodeFloat64Int32(data.(map[float64]int32), writer)
+case map[float64]int64:
+    return l.EncodeFloat64Int64(data.(map[float64]int64), writer)
+case map[float64]uint:
+    return l.EncodeFloat64Uint(data.(map[float64]uint), writer)
+case map[float64]uint8:
+    return l.EncodeFloat64Uint8(data.(map[float64]uint8), writer)
+case map[float64]uint16:
+    return l.EncodeFloat64Uint16(data.(map[float64]uint16), writer)
+case map[float64]uint32:
+    return l.EncodeFloat64Uint32(data.(map[float64]uint32), writer)
+case map[float64]uint64:
+    return l.EncodeFloat64Uint64(data.(map[float64]uint64), writer)
+case map[float64]bool:
+    return l.EncodeFloat64Bool(data.(map[float64]bool), writer)
+case map[float64]string:
+    return l.EncodeFloat64String(data.(map[float64]string), writer)
+case map[float64]float32:
+    return l.EncodeFloat64Float32(data.(map[float64]float32), writer)
+case map[float64]float64:
+    return l.EncodeFloat64Float64(data.(map[float64]float64), writer)
+case map[float64]interface{}:
+    return l.EncodeFloat64Interface(data.(map[float64]interface{}), writer)
+
+case map[interface{}]int:
+    return l.EncodeInterfaceInt(data.(map[interface{}]int), writer)
+case map[interface{}]int8:
+    return l.EncodeInterfaceInt8(data.(map[interface{}]int8), writer)
+case map[interface{}]int16:
+    return l.EncodeInterfaceInt16(data.(map[interface{}]int16), writer)
+case map[interface{}]int32:
+    return l.EncodeInterfaceInt32(data.(map[interface{}]int32), writer)
+case map[interface{}]int64:
+    return l.EncodeInterfaceInt64(data.(map[interface{}]int64), writer)
+case map[interface{}]uint:
+    return l.EncodeInterfaceUint(data.(map[interface{}]uint), writer)
+case map[interface{}]uint8:
+    return l.EncodeInterfaceUint8(data.(map[interface{}]uint8), writer)
+case map[interface{}]uint16:
+    return l.EncodeInterfaceUint16(data.(map[interface{}]uint16), writer)
+case map[interface{}]uint32:
+    return l.EncodeInterfaceUint32(data.(map[interface{}]uint32), writer)
+case map[interface{}]uint64:
+    return l.EncodeInterfaceUint64(data.(map[interface{}]uint64), writer)
+case map[interface{}]bool:
+    return l.EncodeInterfaceBool(data.(map[interface{}]bool), writer)
+case map[interface{}]string:
+    return l.EncodeInterfaceString(data.(map[interface{}]string), writer)
+case map[interface{}]float32:
+    return l.EncodeInterfaceFloat32(data.(map[interface{}]float32), writer)
+case map[interface{}]float64:
+    return l.EncodeInterfaceFloat64(data.(map[interface{}]float64), writer)
+case map[interface{}]interface{}:
+    return l.EncodeInterfaceInterface(data.(map[interface{}]interface{}), writer)
+default:
+    break
+
+
+
+func (l *MapEncoder) EncodeIntInt(data map[int]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntInt8(data map[int]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntInt16(data map[int]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntInt32(data map[int]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntInt64(data map[int]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntUint(data map[int]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntUint8(data map[int]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntUint16(data map[int]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntUint32(data map[int]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntUint64(data map[int]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntBool(data map[int]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntString(data map[int]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntFloat32(data map[int]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntFloat64(data map[int]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeIntInterface(data map[int]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeInt8Int(data map[int8]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Int8(data map[int8]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Int16(data map[int8]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Int32(data map[int8]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Int64(data map[int8]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Uint(data map[int8]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Uint8(data map[int8]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Uint16(data map[int8]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Uint32(data map[int8]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Uint64(data map[int8]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Bool(data map[int8]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8String(data map[int8]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Float32(data map[int8]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Float64(data map[int8]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt8Interface(data map[int8]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeInt16Int(data map[int16]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Int8(data map[int16]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Int16(data map[int16]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Int32(data map[int16]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Int64(data map[int16]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Uint(data map[int16]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Uint8(data map[int16]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Uint16(data map[int16]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Uint32(data map[int16]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Uint64(data map[int16]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Bool(data map[int16]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16String(data map[int16]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Float32(data map[int16]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Float64(data map[int16]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt16Interface(data map[int16]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeInt32Int(data map[int32]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Int8(data map[int32]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Int16(data map[int32]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Int32(data map[int32]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Int64(data map[int32]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Uint(data map[int32]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Uint8(data map[int32]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Uint16(data map[int32]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Uint32(data map[int32]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Uint64(data map[int32]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Bool(data map[int32]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32String(data map[int32]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Float32(data map[int32]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Float64(data map[int32]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt32Interface(data map[int32]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeInt64Int(data map[int64]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Int8(data map[int64]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Int16(data map[int64]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Int32(data map[int64]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Int64(data map[int64]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Uint(data map[int64]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Uint8(data map[int64]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Uint16(data map[int64]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Uint32(data map[int64]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Uint64(data map[int64]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Bool(data map[int64]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64String(data map[int64]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Float32(data map[int64]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Float64(data map[int64]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInt64Interface(data map[int64]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeUintInt(data map[uint]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintInt8(data map[uint]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintInt16(data map[uint]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintInt32(data map[uint]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintInt64(data map[uint]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintUint(data map[uint]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintUint8(data map[uint]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintUint16(data map[uint]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintUint32(data map[uint]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintUint64(data map[uint]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintBool(data map[uint]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintString(data map[uint]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintFloat32(data map[uint]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintFloat64(data map[uint]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUintInterface(data map[uint]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeUint8Int(data map[uint8]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Int8(data map[uint8]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Int16(data map[uint8]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Int32(data map[uint8]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Int64(data map[uint8]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Uint(data map[uint8]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Uint8(data map[uint8]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Uint16(data map[uint8]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Uint32(data map[uint8]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Uint64(data map[uint8]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Bool(data map[uint8]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8String(data map[uint8]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Float32(data map[uint8]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Float64(data map[uint8]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint8Interface(data map[uint8]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeUint16Int(data map[uint16]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Int8(data map[uint16]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Int16(data map[uint16]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Int32(data map[uint16]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Int64(data map[uint16]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Uint(data map[uint16]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Uint8(data map[uint16]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Uint16(data map[uint16]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Uint32(data map[uint16]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Uint64(data map[uint16]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Bool(data map[uint16]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16String(data map[uint16]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Float32(data map[uint16]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Float64(data map[uint16]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint16Interface(data map[uint16]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeUint32Int(data map[uint32]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Int8(data map[uint32]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Int16(data map[uint32]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Int32(data map[uint32]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Int64(data map[uint32]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Uint(data map[uint32]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Uint8(data map[uint32]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Uint16(data map[uint32]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Uint32(data map[uint32]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Uint64(data map[uint32]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Bool(data map[uint32]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32String(data map[uint32]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Float32(data map[uint32]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Float64(data map[uint32]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint32Interface(data map[uint32]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeUint64Int(data map[uint64]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Int8(data map[uint64]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Int16(data map[uint64]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Int32(data map[uint64]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Int64(data map[uint64]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Uint(data map[uint64]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Uint8(data map[uint64]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Uint16(data map[uint64]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Uint32(data map[uint64]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Uint64(data map[uint64]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Bool(data map[uint64]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64String(data map[uint64]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Float32(data map[uint64]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Float64(data map[uint64]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeUint64Interface(data map[uint64]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeBoolInt(data map[bool]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolInt8(data map[bool]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolInt16(data map[bool]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolInt32(data map[bool]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolInt64(data map[bool]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolUint(data map[bool]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolUint8(data map[bool]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolUint16(data map[bool]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolUint32(data map[bool]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolUint64(data map[bool]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolBool(data map[bool]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolString(data map[bool]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolFloat32(data map[bool]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolFloat64(data map[bool]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeBoolInterface(data map[bool]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeStringInt(data map[string]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInt8(data map[string]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInt16(data map[string]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInt32(data map[string]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInt64(data map[string]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringUint(data map[string]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringUint8(data map[string]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringUint16(data map[string]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringUint32(data map[string]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringUint64(data map[string]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringBool(data map[string]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringString(data map[string]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringFloat32(data map[string]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringFloat64(data map[string]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeStringInterface(data map[string]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeFloat32Int(data map[float32]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Int8(data map[float32]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Int16(data map[float32]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Int32(data map[float32]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Int64(data map[float32]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Uint(data map[float32]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Uint8(data map[float32]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Uint16(data map[float32]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Uint32(data map[float32]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Uint64(data map[float32]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Bool(data map[float32]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32String(data map[float32]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Float32(data map[float32]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Float64(data map[float32]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat32Interface(data map[float32]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeFloat64Int(data map[float64]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Int8(data map[float64]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Int16(data map[float64]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Int32(data map[float64]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Int64(data map[float64]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Uint(data map[float64]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Uint8(data map[float64]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Uint16(data map[float64]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Uint32(data map[float64]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Uint64(data map[float64]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Bool(data map[float64]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64String(data map[float64]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Float32(data map[float64]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Float64(data map[float64]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeFloat64Interface(data map[float64]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+
+func (l *MapEncoder) EncodeInterfaceInt(data map[interface{}]int, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInt8(data map[interface{}]int8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInt16(data map[interface{}]int16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInt32(data map[interface{}]int32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInt64(data map[interface{}]int64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceUint(data map[interface{}]uint, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceUint8(data map[interface{}]uint8, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceUint16(data map[interface{}]uint16, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceUint32(data map[interface{}]uint32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceUint64(data map[interface{}]uint64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceBool(data map[interface{}]bool, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceString(data map[interface{}]string, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceFloat32(data map[interface{}]float32, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceFloat64(data map[interface{}]float64, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (l *MapEncoder) EncodeInterfaceInterface(data map[interface{}]interface{}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for key, value := range data {
+		if err := l.valueEncoder.Encode(key, writer); err != nil {
+			return err
+		}
+		if err := l.valueEncoder.Encode(value, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}

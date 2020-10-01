@@ -91,4 +91,6 @@ func main() {
 	fmt.Printf("Payload Key: %d content: %d\n", uint(1000), payload[uint(1000)].(int)) //OUTPUT : Payload Key: 1000 content: 8765
 	//Lets now access the "1000" string key in the payload and see the magic stuff
 	fmt.Printf("Payload Key: %s content: %s\n", "1000", payload["1000"].(string)) //OUTPUT : Payload Key: 1000 content: THis is a string
+
+	fmt.Println(string(encoded))
 }

@@ -1,0 +1,26 @@
+//Start of auto generated switch for List Encoder
+switch data.(type) {
+{{range $type := .Type}}
+case []{{index $type 0}}:
+    return l.Encode{{index $type 1}}(data.([]{{index $type 0}}), writer){{end}}
+default:
+    break
+}
+//End of auto generated switch for List Encoder
+
+
+//Start of auto generated function for List Encoder
+{{range $type := .Type}}
+func (l *ListEncoder) Encode{{index $type 1}}(data []{{index $type 0}}, writer IWriter) error {
+	if err := l.intEncoder.Encode(len(data), writer); err != nil {
+		return err
+	}
+	for _, val := range data {
+		if err := l.valueEncoder.Encode(val, writer); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+{{end}}
+//End of auto generated function for List Encoder
