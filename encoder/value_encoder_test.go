@@ -43,7 +43,7 @@ func TestValueEncoderBehaviour(t *testing.T) {
 	}
 
 	encoder := NewValueEncoder(map[ValueEncoderType]IValueEncoderUnit{
-		GeneralValueEncoder: &MockValueEncoderUnit{},
+		StructValueEncoder: &MockValueEncoderUnit{},
 	})
 	for _, val := range testData {
 		t.Run(val.Name, func(t *testing.T) {

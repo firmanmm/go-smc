@@ -75,7 +75,13 @@ func NewSliceWriter() *SliceWriter {
 
 type _LinkedByteWriterNode struct {
 	next *_LinkedByteWriterNode
-	data []byte
+	data [][]byte
+}
+
+func New_LinkedByteWriterNode(size int) *_LinkedByteWriterNode {
+	return &_LinkedByteWriterNode{
+		data: make([][]byte, size),
+	}
 }
 
 /*
@@ -84,13 +90,19 @@ Make a linked list to store byte and convert them to byte array
 I'm highly aware that there are data structure library for thing like this
 Already checked some with 5K and 8K star but they didn't provide a simple and dynamic linked list implementation
 So i have to make a simple wheel
+//DEV NOTE
+Sometime, out smarting the system just isn't worth it, This particular writer is slow, i mean, really slow.
+Sticking with bytes buffer or even slice append is faster
 */
 type LinkedByteWriter struct {
-	start  *_LinkedByteWriterNode
-	end    *_LinkedByteWriterNode
-	result []byte
-	length int
-	size   int
+	start *_LinkedByteWriterNode
+	end   *_LinkedByteWriterNode
+	size  int
+	idx   int
+}
+
+func (l *LinkedByteWriter) WriteString(data string) error {
+	return l.Write([]byte(data))
 }
 
 func (l *LinkedByteWriter) WriteByte(data byte) error {
@@ -98,41 +110,38 @@ func (l *LinkedByteWriter) WriteByte(data byte) error {
 }
 
 func (l *LinkedByteWriter) Write(data []byte) error {
-	node := &_LinkedByteWriterNode{
-		data: data,
-	}
-	if l.start == nil {
-		l.start = node
-		l.end = node
-	} else {
+	if l.idx == len(l.end.data) {
+		node := New_LinkedByteWriterNode(l.idx * 2)
+		l.idx = 0
 		l.end.next = node
 		l.end = node
 	}
-	l.length++
+	l.end.data[l.idx] = data
+	l.idx++
 	l.size += len(data)
-
-	//if new data is written then invalidate the cache
-	l.result = nil
 	return nil
 }
 
 func (l *LinkedByteWriter) GetContent() ([]byte, error) {
-	if l.result == nil {
-		if l.start == nil {
-			l.result = []byte{}
-		} else {
-			l.result = l.toByte()
-		}
-	}
-	return l.result, nil
+	res := l.toByte()
+	l.end = l.start
+	l.idx = 0
+	return res, nil
 }
 
 func (l *LinkedByteWriter) toByte() []byte {
-	iter := l.start
 	//Should be able avoid reallocation due to resize
 	data := make([]byte, 0, l.size)
+	iter := l.start
 	for iter != nil {
-		data = append(data, iter.data...)
+		limit := len(iter.data)
+		if iter.next == nil {
+			limit = l.idx
+		}
+
+		for i := 0; i < limit; i++ {
+			data = append(data, iter.data[i]...)
+		}
 		iter = iter.next
 	}
 	return data
@@ -143,7 +152,11 @@ func (l *LinkedByteWriter) GetSize() int {
 }
 
 func NewLinkedByteWriter() *LinkedByteWriter {
-	return &LinkedByteWriter{}
+	node := New_LinkedByteWriterNode(2)
+	return &LinkedByteWriter{
+		start: node,
+		end:   node,
+	}
 }
 
 //////////////////// READER PART ///////////////////

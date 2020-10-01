@@ -2,7 +2,6 @@ package gosmc
 
 import (
 	"crypto/sha512"
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -10,6 +9,49 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/assert"
 )
+
+type Organism struct {
+	Name    string
+	Age     uint
+	Species string
+}
+
+type ParentOrganism struct {
+	Name         string
+	Age          uint
+	Species      string
+	Active       bool
+	Passive      bool
+	Weight       float64
+	Fingerprint  []byte
+	Child        Organism
+	PointerChild *Organism
+}
+
+func _GetStructSource() ParentOrganism {
+
+	fingerprint := sha512.Sum512([]byte("A Fingerprint"))
+
+	return ParentOrganism{
+		Name:        "Rendoru",
+		Age:         22,
+		Species:     "Human",
+		Active:      true,
+		Passive:     false,
+		Weight:      172.2,
+		Fingerprint: fingerprint[:],
+		Child: Organism{
+			Name:    "Doru",
+			Age:     1,
+			Species: "Digital Or Unknown",
+		},
+		PointerChild: &Organism{
+			Name:    "Ren",
+			Age:     1,
+			Species: "Digital",
+		},
+	}
+}
 
 type MockValueEncoder struct {
 }
@@ -194,6 +236,12 @@ func TestMessageCodecIntegration(t *testing.T) {
 			false,
 			true,
 		},
+		{
+			"Struct",
+			_GetStructSource(),
+			false,
+			true,
+		},
 	}
 
 	codec := NewSimpleMessageCodec()
@@ -211,18 +259,11 @@ func TestMessageCodecIntegration(t *testing.T) {
 			if err != nil != val.HasError {
 				t.Errorf("Expected error value of %v but got %v", val.HasError, err != nil)
 			}
-			if val.ExactMatch {
-				if !reflect.DeepEqual(val.Value, decoded) {
-					t.Errorf("Expected %v but got %v", val.Value, decoded)
-				}
-			} else {
-				originalString := fmt.Sprintf("%v", val.Value)
-				decodedString := fmt.Sprintf("%v", decoded)
-
-				if !(originalString == decodedString) {
-					t.Errorf("Expected %v but got %v", val.Value, decoded)
-				}
-			}
+			originalJSON, err := jsoniter.MarshalToString(val.Value)
+			assert.Nil(t, err)
+			decodedJSON, err := jsoniter.MarshalToString(decoded)
+			assert.Nil(t, err)
+			assert.JSONEq(t, originalJSON, decodedJSON)
 		})
 	}
 }
@@ -235,6 +276,7 @@ func TestSizeComparison(t *testing.T) {
 		-114124141:     "11111",
 		-2542341242:    -2,
 		"ww":           "www",
+		"Struct":       _GetStructSource(),
 	}
 
 	source := make([]interface{}, 0, 1000)
@@ -265,6 +307,7 @@ func TestSizeComparisonWithArrayOfByte(t *testing.T) {
 		-2542341242:    -2,
 		"ww":           "www",
 		"Fingerprint":  fingerprint[:],
+		"Struct":       _GetStructSource(),
 	}
 
 	source := make([]interface{}, 0, 1000)

@@ -59,9 +59,11 @@ func NewSimpleMessageCodec() *SimpleMessageCodec {
 
 	listEncoder := encoder.NewListEncoder(valueEncoder)
 	mapEncoder := encoder.NewMapEncoder(valueEncoder)
+	structEncoder := encoder.NewStructEncoder(valueEncoder)
 
 	valueEncoder.SetEncoder(encoder.ListValueEncoder, listEncoder)
 	valueEncoder.SetEncoder(encoder.MapValueEncoder, mapEncoder)
+	valueEncoder.SetEncoder(encoder.StructValueEncoder, structEncoder)
 
 	return &SimpleMessageCodec{
 		valueEncoder: valueEncoder,
@@ -73,6 +75,7 @@ func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	current := NewSimpleMessageCodec()
 	jsoniterEncoder := encoder.NewJsoniterEncoder()
 	current.valueEncoder.SetEncoder(encoder.MapValueEncoder, jsoniterEncoder)
+	current.valueEncoder.SetEncoder(encoder.StructValueEncoder, jsoniterEncoder)
 	current.valueEncoder.SetEncoder(encoder.GeneralValueEncoder, jsoniterEncoder)
 	return current
 }

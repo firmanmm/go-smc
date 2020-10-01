@@ -652,3 +652,68 @@ func BenchmarkListOfMapSMCWithJsoniter(b *testing.B) {
 	}
 
 }
+
+func BenchmarkStructJson(b *testing.B) {
+	data := _GetStructSource()
+	var dest interface{}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		res, err := json.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = json.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkStructJsoniter(b *testing.B) {
+	data := _GetStructSource()
+	var dest interface{}
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := jsoniter.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = jsoniter.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkStructSMC(b *testing.B) {
+	encoder := NewSimpleMessageCodec()
+	data := _GetStructSource()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+}
+
+func BenchmarkStructSMCWithJsoniter(b *testing.B) {
+	encoder := NewSimpleMessageCodecWithJsoniter()
+	data := _GetStructSource()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := encoder.Encode(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+}

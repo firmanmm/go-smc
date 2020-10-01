@@ -24,6 +24,7 @@ const (
 	ListValueEncoder      ValueEncoderType = 8
 	MapValueEncoder       ValueEncoderType = 9
 	BoolValueEncoder      ValueEncoderType = 10
+	StructValueEncoder    ValueEncoderType = 11
 	GeneralValueEncoder   ValueEncoderType = 255
 )
 
@@ -80,6 +81,10 @@ func (s *ValueEncoder) Encode(data interface{}, writer IWriter) error {
 			encoderUsed = ListValueEncoder
 		case reflect.Map:
 			encoderUsed = MapValueEncoder
+		case reflect.Struct:
+			encoderUsed = StructValueEncoder
+		case reflect.Ptr:
+			return s.Encode(reflected.Elem().Interface(), writer)
 		default:
 			_, ok := s.encoders[GeneralValueEncoder]
 			if !ok {
