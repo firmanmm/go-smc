@@ -4,7 +4,7 @@
 There is a litte optimization you can do when passing data to SMC. It can be achieved by just passing the right data type. If the passed data type is natively supported (refer to the table below) then we can avoid using reflection. By just bypassing the reflection stuff we can net a pretty big performance gain.
 
 | Type  | Converted |
-| :------------- | :------------- | :---------- |
+| :------------- | :------------- |
 | bool  | bool |
 | []byte  | []byte |
 | string | string |
