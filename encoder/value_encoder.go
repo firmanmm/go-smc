@@ -74,6 +74,10 @@ func (s *ValueEncoder) Encode(data interface{}, writer IWriter) error {
 		encoderUsed = ByteArrayValueEncoder
 	case string:
 		encoderUsed = StringValueEncoder
+	case []interface{}, []string:
+		encoderUsed = ListValueEncoder
+	case map[string]interface{}, map[interface{}]interface{}:
+		encoderUsed = MapValueEncoder
 	default:
 		reflected := reflect.ValueOf(data)
 		switch reflected.Kind() {

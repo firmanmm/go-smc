@@ -5,6 +5,7 @@ import "reflect"
 type MapEncoder struct {
 	speedUpCommon bool
 	intEncoder    *IntEncoder
+	stringEncoder *StringEncoder
 	valueEncoder  *ValueEncoder
 }
 
@@ -15,7 +16,10 @@ func (l *MapEncoder) Encode(data interface{}, writer IWriter) error {
 			return l.EncodeStringInterface(data.(map[string]interface{}), writer)
 		case map[interface{}]interface{}:
 			return l.EncodeInterfaceInterface(data.(map[interface{}]interface{}), writer)
+		default:
+			break
 		}
+
 	}
 	reflected := reflect.ValueOf(data)
 	pairData := reflected.MapRange()
@@ -41,7 +45,10 @@ func (l *MapEncoder) EncodeStringInterface(data map[string]interface{}, writer I
 		return err
 	}
 	for key, value := range data {
-		if err := l.valueEncoder.Encode(key, writer); err != nil {
+		if err := writer.WriteByte(byte(StringValueEncoder)); err != nil {
+			return err
+		}
+		if err := l.stringEncoder.Encode(key, writer); err != nil {
 			return err
 		}
 		if err := l.valueEncoder.Encode(value, writer); err != nil {
@@ -100,6 +107,7 @@ func NewMapCommonEncoder(valueEncoder *ValueEncoder) *MapEncoder {
 	return &MapEncoder{
 		speedUpCommon: true,
 		valueEncoder:  valueEncoder,
+		stringEncoder: NewStringEncoder(),
 		intEncoder:    NewIntEncoder(),
 	}
 }

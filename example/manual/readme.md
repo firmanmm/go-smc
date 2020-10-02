@@ -1,0 +1,2 @@
+# Simple Message Codec Manual Encode and Decode
+This section demonstrate how to do manual encode and decode. This are useful if you want to selectively encode and decode data. Also since it's perform manually, it might yield performance increase at the cost of more maintenance cost.

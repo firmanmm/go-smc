@@ -11,6 +11,7 @@ type IWriter interface {
 	WriteString(string) error
 	WriteByte(byte) error
 	Write([]byte) error
+	Reset()
 	GetContent() ([]byte, error)
 }
 
@@ -34,10 +35,13 @@ func (b *BufferWriter) Write(datas []byte) error {
 
 func (b *BufferWriter) GetContent() ([]byte, error) {
 	raw := b.buffer.Bytes()
-	b.buffer.Reset()
 	result := make([]byte, len(raw))
 	copy(result, raw)
 	return result, nil
+}
+
+func (b *BufferWriter) Reset() {
+	b.buffer.Reset()
 }
 
 func NewBufferWriter() *BufferWriter {
@@ -164,6 +168,7 @@ func NewLinkedByteWriter() *LinkedByteWriter {
 type IReader interface {
 	ReadByte() (byte, error)
 	Read(int) ([]byte, error)
+	HasData() bool
 }
 
 type SliceReader struct {
@@ -186,6 +191,10 @@ func (s *SliceReader) Read(count int) ([]byte, error) {
 	data := s.buffer[:count]
 	s.buffer = s.buffer[count:]
 	return data, nil
+}
+
+func (s *SliceReader) HasData() bool {
+	return len(s.buffer) > 0
 }
 
 func NewSliceReader(slice []byte) *SliceReader {

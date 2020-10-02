@@ -125,6 +125,9 @@ SMC will convert certain data type to another data type in the process. If you d
 
 Also, since `Jsoniter` convert all map keys to string, you simply can't do what the example shows you. That means `int(1000)`, `uint(1000)`, and "1000" are actually the same, and the behaviour is unknown. If you want safety, then you can use the pure implementation if you need to deal with that kind of key.
 
+### Conversion Optimization
+Please refer to [example/optimization](example/optimization/readme.md) for conversion optimization.
+
 ## Benchmark
 Well this is the comparison of `smc` against `json`, `jsoniter` and `smc backed with jsoniter` :
 
@@ -197,7 +200,8 @@ When using `NewSimpleMessageCodec` or `pure` implementation, the decoded `map` w
 ## Todo
 - Improve Struct performance (Need to be better than jsoniter)
 - Make more example
-- Need to try using Unsafe Operation
+- Need to try using Unsafe Operation (prefer not to)
+- Make code generator since there are manual encode and decode support
 
 ## Note
 I highly recommend that you use `jsoniter` as that is more battle tested than this. Also `jsoniter` is easier to read than this (Good luck if you want to read the output when using SMC).
