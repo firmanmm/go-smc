@@ -6,6 +6,7 @@ import (
 	"github.com/firmanmm/gosmc/encoder"
 )
 
+var defaultEncoder *SimpleMessageCodec
 var writerPool *sync.Pool
 
 func init() {
@@ -152,4 +153,28 @@ func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	current.valueEncoder.SetEncoder(encoder.StructValueEncoder, jsoniterEncoder)
 	current.valueEncoder.SetEncoder(encoder.GeneralValueEncoder, jsoniterEncoder)
 	return current
+}
+
+func init() {
+	defaultEncoder = NewSimpleMessageCodec()
+}
+
+//Encode value with pure implementation encoder
+func Encode(value interface{}) ([]byte, error) {
+	return defaultEncoder.Encode(value)
+}
+
+//Decode value with pure implementation decoder
+func Decode(data []byte) (interface{}, error) {
+	return defaultEncoder.Decode(data)
+}
+
+//Perform manual encoding with pure implementation manual encoder
+func ManualEncode(value interface{}, encoder ManualEncodeFunc) ([]byte, error) {
+	return defaultEncoder.ManualEncode(value, encoder)
+}
+
+//Perform manual decoding with pure implementation manual decoder
+func ManualDecode(data []byte, decoder ManualDecodeFunc) (interface{}, error) {
+	return defaultEncoder.ManualDecode(data, decoder)
 }
