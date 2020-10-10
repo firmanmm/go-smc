@@ -155,6 +155,15 @@ func NewSimpleMessageCodecWithJsoniter() *SimpleMessageCodec {
 	return current
 }
 
+//Creates new message codec but uses universally known data type.
+//This avoid inconsistency when dealing with langguage that doesn't have certain data type.
+//Example scenario of this is that there is no `uint` data type in `Java`, `Javascript`, or even `Python`.
+func NewUniversalSimpleMessageCodec() *SimpleMessageCodec {
+	current := NewSimpleMessageCodec()
+	current.valueEncoder.SetEncoder(encoder.UintValueEncoder, encoder.NewUintUniversalEncoder())
+	return current
+}
+
 func init() {
 	defaultEncoder = NewSimpleMessageCodec()
 }

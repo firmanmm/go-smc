@@ -42,3 +42,22 @@ func (i *UintEncoder) Decode(reader IReader) (interface{}, error) {
 func NewUintEncoder() *UintEncoder {
 	return &UintEncoder{}
 }
+
+type UintUniversalEncoder struct {
+	intEncoder *IntEncoder
+}
+
+func (i *UintUniversalEncoder) Encode(data interface{}, writer IWriter) error {
+	return i.intEncoder.Encode(int(data.(uint)), writer)
+}
+
+func (i *UintUniversalEncoder) Decode(reader IReader) (interface{}, error) {
+	return i.intEncoder.Decode(reader)
+}
+
+//A wrapper that convert `uint` data type to `ìnt`
+func NewUintUniversalEncoder() *UintUniversalEncoder {
+	return &UintUniversalEncoder{
+		intEncoder: NewIntEncoder(),
+	}
+}

@@ -113,19 +113,20 @@ SMC will convert certain data type to another data type in the process. If you d
 | Type | Implementation | Converted |
 | :------------- | :------------- | :---------- |
 | bool | Any | bool |
-| []byte | Pure | []byte |
+| []byte | Pure, Universal | []byte |
 | []byte | Jsoniter | string |
 | string | Any | string |
 | int, int8, int16, int32, int64 | Any | int |
-| uint, uint8, uint16, uint32, uint64 | Any | uint |
+| uint, uint8, uint16, uint32, uint64 | Pure | uint |
+| uint, uint8, uint16, uint32, uint64 | Universal, Jsoniter | int |
 | float32, float64 | Any | float64 |
 | []Any (Except []byte) | Any | []interface{} |
-| map[Any]Any | Pure | map[interface{}]interface{} |
+| map[Any]Any | Pure, Universal | map[interface{}]interface{} |
 | map[Any]Any | Jsoniter | map[string]interface{} |
 | Struct | Any | map[string]interface{} |
 | *Any | Any | Dereferenced and follow conversion table |
 
-Also, since `Jsoniter` convert all map keys to string, you simply can't do what the example shows you. That means `int(1000)`, `uint(1000)`, and "1000" are actually the same, and the behaviour is unknown. If you want safety, then you can use the pure implementation if you need to deal with that kind of key.
+Also, since `Jsoniter` convert all map keys to string, you simply can't do what the example shows you. That means `int(1000)`, `uint(1000)`, and "1000" are actually the same, and the behaviour is unknown. This same behaviour also happen when using `universal` encoder but it will only happen for `int(1000)` and `uint(1000)`, this because the `universal` encoder attempt to encode to the most commonly supported data type. An example of unsupported data type in other proggramming langguage is `uint` where it doesn't exist in `java` or `python`. If you want safety, then you can use the pure implementation if you need to deal with that kind of key.
 
 ### Conversion Optimization
 Please refer to [example/optimization](example/optimization/readme.md) for conversion optimization.
