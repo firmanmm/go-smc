@@ -108,24 +108,23 @@ func BenchmarkStructEncoderCached(t *testing.B) {
 	valueEncoder.SetEncoder(ListValueEncoder, listEncoder)
 	valueEncoder.SetEncoder(StructValueEncoder, encoder)
 	t.ResetTimer()
-	t.RunParallel(func(p *testing.PB) {
-		for p.Next() {
-			writer := NewBufferWriter()
-			err := encoder.Encode(source, writer)
-			if err != nil {
-				t.Error(err)
-			}
-			content, err := writer.GetContent()
-			if err != nil {
-				t.Error(err)
-			}
-			reader := NewSliceReader(content)
-			_, err = encoder.Decode(reader)
-			if err != nil {
-				t.Error(err)
-			}
+	for i := 0; i < t.N; i++ {
+		writer := NewBufferWriter()
+		err := encoder.Encode(source, writer)
+		if err != nil {
+			t.Error(err)
 		}
-	})
+		content, err := writer.GetContent()
+		if err != nil {
+			t.Error(err)
+		}
+		reader := NewSliceReader(content)
+		_, err = encoder.Decode(reader)
+		if err != nil {
+			t.Error(err)
+		}
+
+	}
 
 }
 
@@ -149,23 +148,20 @@ func BenchmarkStructEncoderOld(t *testing.B) {
 	valueEncoder.SetEncoder(ListValueEncoder, listEncoder)
 	valueEncoder.SetEncoder(StructValueEncoder, encoder)
 	t.ResetTimer()
-	t.RunParallel(func(p *testing.PB) {
-		for p.Next() {
-			writer := NewBufferWriter()
-			err := encoder.Encode_Old(source, writer)
-			if err != nil {
-				t.Error(err)
-			}
-			content, err := writer.GetContent()
-			if err != nil {
-				t.Error(err)
-			}
-			reader := NewSliceReader(content)
-			_, err = encoder.Decode(reader)
-			if err != nil {
-				t.Error(err)
-			}
+	for i := 0; i < t.N; i++ {
+		writer := NewBufferWriter()
+		err := encoder.Encode_Old(source, writer)
+		if err != nil {
+			t.Error(err)
 		}
-	})
-
+		content, err := writer.GetContent()
+		if err != nil {
+			t.Error(err)
+		}
+		reader := NewSliceReader(content)
+		_, err = encoder.Decode(reader)
+		if err != nil {
+			t.Error(err)
+		}
+	}
 }
