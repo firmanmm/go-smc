@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -54,4 +56,26 @@ func TestListEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestListCompabilityB64(t *testing.T) {
+	valueEncoder := NewValueEncoder(map[ValueEncoderType]IValueEncoderUnit{
+		IntValueEncoder:    NewIntEncoder(),
+		StringValueEncoder: NewStringEncoder(),
+		FloatValueEncoder:  NewFloatEncoder(),
+	})
+	data := []interface{}{
+		"This is a data",
+		123456789,
+		123456.1231545,
+	}
+	encoder := NewListEncoder(valueEncoder)
+	valueEncoder.SetEncoder(ListValueEncoder, encoder)
+	writer := NewBufferWriter()
+	err := encoder.Encode(data, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }

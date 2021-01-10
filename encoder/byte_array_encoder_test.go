@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"math/rand"
 	"testing"
 
@@ -58,4 +60,19 @@ func TestByteArrayEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestByteArrayCompabilityB64(t *testing.T) {
+	data := make([]byte, 256)
+	for i := 0; i < 256; i++ {
+		data[i] = byte(i)
+	}
+	encoder := NewByteArrayEncoder()
+	writer := NewBufferWriter()
+	err := encoder.Encode(data, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }

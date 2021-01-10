@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -40,4 +42,15 @@ func TestBoolEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestBoolCompabilityB64(t *testing.T) {
+	encoder := NewBoolEncoder()
+	writer := NewBufferWriter()
+	err := encoder.Encode(true, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }

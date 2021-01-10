@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -75,4 +77,15 @@ func TestFloatEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestFloatCompabilityB64(t *testing.T) {
+	encoder := NewFloatEncoder()
+	writer := NewBufferWriter()
+	err := encoder.Encode(123456789.123456789, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }

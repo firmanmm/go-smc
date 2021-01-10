@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"math"
 	"testing"
 
@@ -55,4 +57,15 @@ func TestIntEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestIntCompabilityB64(t *testing.T) {
+	encoder := NewIntEncoder()
+	writer := NewBufferWriter()
+	err := encoder.Encode(123456789, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }

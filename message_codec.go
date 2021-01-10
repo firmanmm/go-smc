@@ -1,6 +1,7 @@
 package gosmc
 
 import (
+	"errors"
 	"sync"
 
 	"github.com/firmanmm/gosmc/encoder"
@@ -88,6 +89,104 @@ type ManualReader struct {
 //Will return the data directly
 func (m *ManualReader) Read() (interface{}, error) {
 	return m.decoder.Decode(m.reader)
+}
+
+//Read one stored data as int
+//Will return the data directly
+func (m *ManualReader) ReadInt() (int, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return 0, err
+	}
+	res, ok := raw.(int)
+	if !ok {
+		return 0, errors.New("Read result is not an int")
+	}
+	return res, nil
+}
+
+//Read one stored data as uint
+//Will return the data directly
+func (m *ManualReader) ReadUint() (uint, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return 0, err
+	}
+	res, ok := raw.(uint)
+	if !ok {
+		return 0, errors.New("Read result is not an uint")
+	}
+	return res, nil
+}
+
+//Read one stored data as string
+//Will return the data directly
+func (m *ManualReader) ReadString() (string, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return "", err
+	}
+	res, ok := raw.(string)
+	if !ok {
+		return "", errors.New("Read result is not a string")
+	}
+	return res, nil
+}
+
+//Read one stored data as array of byte
+//Will return the data directly
+func (m *ManualReader) ReadByteArray() ([]byte, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return nil, err
+	}
+	res, ok := raw.([]byte)
+	if !ok {
+		return nil, errors.New("Read result is not an array of byte")
+	}
+	return res, nil
+}
+
+//Read one stored data as float 64
+//Will return the data directly
+func (m *ManualReader) ReadFloat64() (float64, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return 0, err
+	}
+	res, ok := raw.(float64)
+	if !ok {
+		return 0, errors.New("Read result is not a float64")
+	}
+	return res, nil
+}
+
+//Read one stored data as float 32
+//Will return the data directly
+func (m *ManualReader) ReadFloat32() (float32, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return 0, err
+	}
+	res, ok := raw.(float32)
+	if !ok {
+		return 0, errors.New("Read result is not a float32")
+	}
+	return res, nil
+}
+
+//Read one stored data as bool
+//Will return the data directly
+func (m *ManualReader) ReadBool() (bool, error) {
+	raw, err := m.decoder.Decode(m.reader)
+	if err != nil {
+		return false, err
+	}
+	res, ok := raw.(bool)
+	if !ok {
+		return false, errors.New("Read result is not a boolean")
+	}
+	return res, nil
 }
 
 //Read N number of stored data

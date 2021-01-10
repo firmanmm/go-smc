@@ -1,6 +1,8 @@
 package encoder
 
 import (
+	"encoding/base64"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -86,4 +88,28 @@ func TestMapEncoder(t *testing.T) {
 			assert.EqualValues(t, val.Value, decoded)
 		})
 	}
+}
+
+func TestMapCompabilityB64(t *testing.T) {
+	valueEncoder := NewValueEncoder(map[ValueEncoderType]IValueEncoderUnit{
+		IntValueEncoder:    NewIntEncoder(),
+		StringValueEncoder: NewStringEncoder(),
+		FloatValueEncoder:  NewFloatEncoder(),
+	})
+	data := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+	encoder := NewMapEncoder(valueEncoder)
+	valueEncoder.SetEncoder(MapValueEncoder, encoder)
+	writer := NewBufferWriter()
+	err := encoder.Encode(data, writer)
+	assert.Nil(t, err)
+	content, err := writer.GetContent()
+	assert.Nil(t, err)
+	encoded := base64.StdEncoding.EncodeToString(content)
+	fmt.Println(encoded)
 }
