@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	jsoniter "github.com/json-iterator/go"
+	"github.com/vmihailenco/msgpack"
 )
 
 func BenchmarkArrayOfByteJson(b *testing.B) {
@@ -86,6 +87,27 @@ func BenchmarkArrayOfByteSMCWithJsoniter(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
+
+func BenchmarkArrayOfByteMsgpack(b *testing.B) {
+	data := make([]byte, 10000)
+	for i := 0; i < len(data); i++ {
+		data[i] = byte(i % 256)
+	}
+
+	var dest []byte
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
 }
 
 func BenchmarkNestedArrayOfByteJson(b *testing.B) {
@@ -190,6 +212,32 @@ func BenchmarkNestedArrayOfByteSMCWithJsoniter(b *testing.B) {
 	}
 }
 
+func BenchmarkNestedArrayOfByteMsgpack(b *testing.B) {
+	childData := make([]byte, 10000)
+	for i := 0; i < len(childData); i++ {
+		childData[i] = byte(i % 256)
+	}
+
+	data := make([][]byte, 100)
+	for i := 0; i < 10; i++ {
+		data[i] = childData
+	}
+
+	var dest [][]byte
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
 func BenchmarkInterfaceMapJsoniter(b *testing.B) {
 
 	data := map[interface{}]interface{}{
@@ -261,6 +309,31 @@ func BenchmarkInterfaceMapSMCWithJsoniter(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
+
+func BenchmarkInterfaceMapMsgPack(b *testing.B) {
+
+	data := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+
+	var dest map[interface{}]interface{}
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
 }
 
 func BenchmarkDeepInterfaceMapJsoniter(b *testing.B) {
@@ -374,6 +447,44 @@ func BenchmarkDeepInterfaceMapSMCWithJsoniter(b *testing.B) {
 	}
 }
 
+// Not Supported
+// func BenchmarkDeepInterfaceMapMsgpack(b *testing.B) {
+
+// 	data := map[interface{}]interface{}{
+// 		1:              1123.312,
+// 		"Not A Number": 13123,
+// 		-1:             "11111",
+// 		-2:             -2,
+// 		"ww":           "www",
+// 	}
+// 	iter := data
+// 	for i := 0; i < 100; i++ {
+// 		child := map[interface{}]interface{}{
+// 			1:              1123.312,
+// 			"Not A Number": 13123,
+// 			-1:             "11111",
+// 			-2:             -2,
+// 			"ww":           "www",
+// 		}
+// 		iter["child"] = child
+// 		iter = child
+// 	}
+
+// 	var dest map[interface{}]interface{}
+// 	b.ResetTimer()
+
+// 	for i := 0; i < b.N; i++ {
+// 		res, err := msgpack.Marshal(data)
+// 		if err != nil {
+// 			b.Error(err.Error())
+// 		}
+// 		if err = msgpack.Unmarshal(res, &dest); err != nil {
+// 			b.Error(err.Error())
+// 		}
+// 	}
+
+// }
+
 func BenchmarkStringJson(b *testing.B) {
 	data := "A"
 	for i := 0; i < 10; i++ {
@@ -454,6 +565,27 @@ func BenchmarkStringSMCWithJsoniter(b *testing.B) {
 			b.Error(err.Error())
 		}
 		if _, err = encoder.Decode(res); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
+func BenchmarkStringMsgpack(b *testing.B) {
+	data := "A"
+	for i := 0; i < 10; i++ {
+		data += data
+	}
+
+	var dest string
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
 			b.Error(err.Error())
 		}
 	}
@@ -564,6 +696,32 @@ func BenchmarkListStringSMCWithJsoniter(b *testing.B) {
 
 }
 
+func BenchmarkListStringMsgpack(b *testing.B) {
+	childData := "A"
+	for i := 0; i < 10; i++ {
+		childData += childData
+	}
+
+	data := make([]string, 100)
+	for i := 0; i < 100; i++ {
+		data[i] = childData
+	}
+
+	var dest []string
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
 func BenchmarkListOfMapJsoniter(b *testing.B) {
 
 	childData := map[interface{}]interface{}{
@@ -653,6 +811,36 @@ func BenchmarkListOfMapSMCWithJsoniter(b *testing.B) {
 
 }
 
+func BenchmarkListOfMapMsgpack(b *testing.B) {
+
+	childData := map[interface{}]interface{}{
+		1:              1123.312,
+		"Not A Number": 13123,
+		-1:             "11111",
+		-2:             -2,
+		"ww":           "www",
+	}
+
+	data := make([]interface{}, 100)
+	for i := 0; i < 100; i++ {
+		data[i] = childData
+	}
+
+	var dest []map[interface{}]interface{}
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
+}
+
 func BenchmarkStructJson(b *testing.B) {
 	data := _GetStructSource()
 	var dest interface{}
@@ -716,4 +904,21 @@ func BenchmarkStructSMCWithJsoniter(b *testing.B) {
 			b.Error(err.Error())
 		}
 	}
+}
+
+func BenchmarkStructMsgpack(b *testing.B) {
+	data := _GetStructSource()
+	var dest ParentOrganism
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		res, err := msgpack.Marshal(data)
+		if err != nil {
+			b.Error(err.Error())
+		}
+		if err = msgpack.Unmarshal(res, &dest); err != nil {
+			b.Error(err.Error())
+		}
+	}
+
 }

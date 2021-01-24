@@ -8,6 +8,7 @@ import (
 	"github.com/firmanmm/gosmc/encoder"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/assert"
+	"github.com/vmihailenco/msgpack"
 )
 
 type Organism struct {
@@ -291,9 +292,13 @@ func TestSizeComparison(t *testing.T) {
 	smcRes, err := smcEncoder.Encode(source)
 	assert.Nil(t, err)
 
+	msgpackRes, err := msgpack.Marshal(source)
+	assert.Nil(t, err)
+
 	t.Log("Size Comparison : ")
 	t.Logf("Jsoniter : %d\n", len(jsoniterRes))
 	t.Logf("SMC : %d\n", len(smcRes))
+	t.Logf("Msgpack : %d\n", len(msgpackRes))
 
 }
 
@@ -322,8 +327,12 @@ func TestSizeComparisonWithArrayOfByte(t *testing.T) {
 	smcRes, err := smcEncoder.Encode(source)
 	assert.Nil(t, err)
 
+	msgpackRes, err := msgpack.Marshal(source)
+	assert.Nil(t, err)
+
 	t.Log("Size Comparison : ")
 	t.Logf("Jsoniter : %d\n", len(jsoniterRes))
 	t.Logf("SMC : %d\n", len(smcRes))
+	t.Logf("Msgpack : %d\n", len(msgpackRes))
 
 }
