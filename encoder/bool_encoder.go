@@ -6,11 +6,9 @@ type BoolEncoder struct {
 func (b *BoolEncoder) Encode(raw interface{}, writer IWriter) error {
 	data := raw.(bool)
 	if data {
-		writer.WriteByte(1)
-	} else {
-		writer.WriteByte(0)
+		return writer.WriteByte(1)
 	}
-	return nil
+	return writer.WriteByte(0)
 }
 
 func (b *BoolEncoder) Decode(reader IReader) (interface{}, error) {

@@ -110,6 +110,12 @@ func TestMessageCodecIntegration(t *testing.T) {
 		ExactMatch bool
 	}{
 		{
+			"Nil",
+			nil,
+			false,
+			false,
+		},
+		{
 			"Int",
 			-1,
 			false,
@@ -193,6 +199,7 @@ func TestMessageCodecIntegration(t *testing.T) {
 				-1:             "11111",
 				-2:             -2,
 				"ww":           "www",
+				"Nil Key":      nil,
 			},
 			false,
 			true,

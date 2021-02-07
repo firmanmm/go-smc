@@ -14,6 +14,7 @@ type IValueEncoderUnit interface {
 type ValueEncoderType int
 
 const (
+	NilValueEncoder       ValueEncoderType = 0
 	ByteValueEncoder      ValueEncoderType = 1 //Not Implemented
 	IntValueEncoder       ValueEncoderType = 2
 	UintValueEncoder      ValueEncoderType = 3
@@ -33,6 +34,9 @@ type ValueEncoder struct {
 }
 
 func (s *ValueEncoder) Encode(data interface{}, writer IWriter) error {
+	if data == nil {
+		return writer.WriteByte(byte(NilValueEncoder))
+	}
 	encoderUsed := ValueEncoderType(0)
 	switch data.(type) {
 	case bool:
@@ -116,11 +120,16 @@ func (v *ValueEncoder) encode(dataType ValueEncoderType, data interface{}, write
 }
 
 func (v *ValueEncoder) Decode(reader IReader) (interface{}, error) {
-	decoderType, err := reader.ReadByte()
+	rawDecoderType, err := reader.ReadByte()
 	if err != nil {
 		return nil, err
 	}
-	decoder, ok := v.encoders[ValueEncoderType(decoderType)]
+	decoderType := ValueEncoderType(rawDecoderType)
+	// Special case for nil value
+	if decoderType == NilValueEncoder {
+		return nil, nil
+	}
+	decoder, ok := v.encoders[decoderType]
 	if !ok {
 		return nil, fmt.Errorf("Decoder Not Found for data type %d", decoderType)
 	}
